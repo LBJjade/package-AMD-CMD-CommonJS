@@ -1,0 +1,14 @@
+{
+  "name": "a-demo",
+  "version": "1.0.0",
+  "description": "demo-npm",
+  "main": "a.js",
+  "scripts": {
+    "test": "a"
+  },
+  "keywords": [
+    "a-demo"
+  ],
+  "author": "lbj",
+  "license": "ISC"
+}
