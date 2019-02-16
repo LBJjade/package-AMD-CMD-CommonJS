@@ -76,5 +76,34 @@
     console.log(a.__proto__); //A {}（即构造器function A 的原型对象）
     console.log(a.__proto__.__proto__); //Object {}（即构造器function Object 的原型对象）
     console.log(a.__proto__.__proto__.__proto__); //null
+
+    Number.__proto__ === Function.prototype; // true
+    Number.constructor == Function; //true
+
+    Boolean.__proto__ === Function.prototype; // true
+    Boolean.constructor == Function; //true
+
+    String.__proto__ === Function.prototype; // true
+    String.constructor == Function; //true
+
+    // 所有的构造器都来自于Function.prototype，甚至包括根构造器Object及Function自身
+    Object.__proto__ === Function.prototype; // true
+    Object.constructor == Function; // true
+
+    // 所有的构造器都来自于Function.prototype，甚至包括根构造器Object及Function自身
+    Function.__proto__ === Function.prototype; // true
+    Function.constructor == Function; //true
+
+    Array.__proto__ === Function.prototype; // true
+    Array.constructor == Function; //true
+
+    RegExp.__proto__ === Function.prototype; // true
+    RegExp.constructor == Function; //true
+
+    Error.__proto__ === Function.prototype; // true
+    Error.constructor == Function; //true
+
+    Date.__proto__ === Function.prototype; // true
+    Date.constructor == Function; //true
   </script>
 </html>
