@@ -33,14 +33,48 @@
 
     o3.say();
     o5.say();
-    var new2 = function (func) {
-    var o = Object.create(func.prototype); 　　 //创建对象
-    var k = func.call(o);　　　　　　　　　　　　　//改变this指向，把结果付给k
-    if (typeof k === 'object') {　　　　　　　　　//判断k的类型是不是对象
-        return k;　　　　　　　　　　　　　　　　　 //是，返回k
-    } else {
-        return o;　　　　　　　　　　　　　　　　　 //不是返回返回构造函数的执行结果
-    }
-}
+    var new2 = function(func) {
+      var o = Object.create(func.prototype); //创建对象
+      var k = func.call(o); //改变this指向，把结果付给k
+      if (typeof k === 'object') {
+        //判断k的类型是不是对象
+        return k; //是，返回k
+      } else {
+        return o; //不是返回返回构造函数的执行结果
+      }
+    };
+
+    var a = {};
+    console.log(a.prototype); //undefined
+    console.log(a.__proto__); //Object {}
+
+    var b = function() {};
+    console.log(b.prototype); //b {}
+    console.log(b.__proto__); //function() {}
+
+    /*1、字面量方式*/
+    var a = {};
+    console.log(a.__proto__); //Object {}
+
+    console.log(a.__proto__ === a.constructor.prototype); //true
+
+    /*2、构造器方式*/
+    var A = function() {};
+    var a = new A();
+    console.log(a.__proto__); //A {}
+
+    console.log(a.__proto__ === a.constructor.prototype); //true
+
+    /*3、Object.create()方式*/
+    var a1 = { a: 1 };
+    var a2 = Object.create(a1);
+    console.log(a2.__proto__); //Object {a: 1}
+
+    console.log(a.__proto__ === a.constructor.prototype); //false（此处即为图1中的例外情况）
+    var A = function() {};
+    var a = new A();
+    console.log(a.__proto__); //A {}（即构造器function A 的原型对象）
+    console.log(a.__proto__.__proto__); //Object {}（即构造器function Object 的原型对象）
+    console.log(a.__proto__.__proto__.__proto__); //null
   </script>
 </html>
