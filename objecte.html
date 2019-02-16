@@ -33,5 +33,14 @@
 
     o3.say();
     o5.say();
+    var new2 = function (func) {
+    var o = Object.create(func.prototype); 　　 //创建对象
+    var k = func.call(o);　　　　　　　　　　　　　//改变this指向，把结果付给k
+    if (typeof k === 'object') {　　　　　　　　　//判断k的类型是不是对象
+        return k;　　　　　　　　　　　　　　　　　 //是，返回k
+    } else {
+        return o;　　　　　　　　　　　　　　　　　 //不是返回返回构造函数的执行结果
+    }
+}
   </script>
 </html>
