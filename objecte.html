@@ -113,6 +113,12 @@
     console.log(Function.prototype); // function() {} （一个空的函数）
     console.log(Object.getOwnPropertyNames(Function.prototype));
 
+    // instanceof：用于判断引用类型属于哪个构造函数的方法
+
+    //f instanceof Foo的判断逻辑是：
+
+    // f的__proto__一层一层往上，能否对应到Foo.prototype
+    // 再试着判断f instance Object
     // 创建 worker
     const worker = new Worker('work.js');
 
@@ -134,7 +140,5 @@
       };
       document.body.appendChild(script);
     }
-
-    
   </script>
 </html>
