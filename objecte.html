@@ -105,5 +105,36 @@
 
     Date.__proto__ === Function.prototype; // true
     Date.constructor == Function; //true
+
+    var f = new Function('x', 'return x*x;');
+    //当然你也可以这么创建 f = function(x){ return x*x }
+    console.log(f.arguments); // arguments 方法从哪里来的？
+    console.log(f.call(window)); // call 方法从哪里来的？
+    console.log(Function.prototype); // function() {} （一个空的函数）
+    console.log(Object.getOwnPropertyNames(Function.prototype));
+
+    // 创建 worker
+    const worker = new Worker('work.js');
+
+    // 向主进程推送消息
+    worker.postMessage('Hello World');
+
+    // 监听主进程来的消息
+    worker.onmessage = function(event) {
+      console.log('Received message ' + event.data);
+    };
+
+    function jsonp(url, jsonpCallback, success) {
+      const script = document.createElement('script');
+      script.src = url;
+      script.async = true;
+      script.type = 'text/javascript';
+      window[jsonpCallback] = function(data) {
+        success && success(data);
+      };
+      document.body.appendChild(script);
+    }
+
+    
   </script>
 </html>
