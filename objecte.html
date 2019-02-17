@@ -153,5 +153,17 @@
     }
     var add2 = curry(2); //add2也就是第一个参数为2的add版本
     console.log(add2(3)); //5
+
+    const curry2 = (fn, ...arg) => {
+      let all = arg;
+      return (...rest) => {
+        all.push(...rest);
+        return fn.apply(null, all);
+      };
+    };
+    let add3 = curry2(add, 2);
+    console.log(add3(8)); //10
+    add3 = curry2(add);
+    console.log(add3(2, 8)); //10
   </script>
 </html>
