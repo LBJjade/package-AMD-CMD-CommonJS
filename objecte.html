@@ -165,5 +165,259 @@
     console.log(add3(8)); //10
     add3 = curry2(add);
     console.log(add3(2, 8)); //10
+
+    //  函数节流是指一定时间内js方法只跑一次。比如人的眨眼睛，就是一定时间内眨一次。这是函数节流最形象的解释。
+    //  函数防抖是指频繁触发的情况下，只有足够的空闲时间，才执行代码一次。比如生活中的坐公交，就是一定时间内，如果有人陆续刷卡上车，司机就不会开车。只有别人没刷卡了，司机才开车。
+    // 函数节流
+    var canRun = true;
+    document.getElementById('throttle').onscroll = function() {
+      if (!canRun) {
+        // 判断是否已空闲，如果在执行中，则直接return
+        return;
+      }
+
+      canRun = false;
+      setTimeout(function() {
+        console.log('函数节流');
+        canRun = true;
+      }, 300);
+    };
+
+    // 函数防抖
+    var timer = false;
+    document.getElementById('debounce').onscroll = function() {
+      clearTimeout(timer); // 清除未执行的代码，重置回初始化状态
+
+      timer = setTimeout(function() {
+        console.log('函数防抖');
+      }, 300);
+    };
+
+    // 组合继承
+    function Person(uName) {
+      this.skills = ['php', 'javascript'];
+      this.userName = uName;
+    }
+    Person.prototype.showUserName = function() {
+      return this.userName;
+    };
+    function Teacher(uName) {
+      Person.call(this, uName);
+    }
+    Teacher.prototype = new Person();
+
+    var oT1 = new Teacher('ghostwu');
+    oT1.skills.push('linux');
+    var oT2 = new Teacher('ghostwu');
+    console.log(oT2.skills); //php,javascript
+    console.log(oT2.showUserName()); //ghostwu
+
+    // 寄生式继承
+    function Person(uName) {
+      this.skills = ['php', 'javascript'];
+      this.userName = uName;
+    }
+    Person.prototype.showUserName = function() {
+      return this.userName;
+    };
+    function Teacher(uName) {
+      Person.call(this, uName);
+    }
+
+    function object(o) {
+      var G = function() {};
+      G.prototype = o;
+      return new G();
+    }
+
+    function inheritPrototype(subObj, superObj) {
+      var proObj = object(superObj.prototype); //复制父类superObj的原型对象
+      proObj.constructor = subObj; //constructor指向子类构造函数
+      subObj.prototype = proObj; //再把这个对象给子类的原型对象
+    }
+
+    inheritPrototype(Teacher, Person);
+
+    var oT1 = new Teacher('ghostwu');
+    oT1.skills.push('linux');
+    var oT2 = new Teacher('ghostwu');
+    console.log(oT2.skills); //php,javascript
+    console.log(oT2.showUserName()); //ghostwu
+
+    // 深度优先遍历DFS 与树的先序遍历比较类似。
+    // 假设初始状态是图中所有顶点均未被访问，则从某个顶点v出发，首先访问该顶点然后依次从它的各个未被访问的邻接点出发深度优先搜索遍历图，直至图中所有和v有路径相通的顶点都被访问到。若此时尚有其他顶点未被访问到，则另选一个未被访问的顶点作起始点，重复上述过程，直至图中所有顶点都被访问到为止。
+    /*深度优先遍历三种方式*/
+    let deepTraversal1 = (node, nodeList = []) => {
+      if (node !== null) {
+        nodeList.push(node);
+        let children = node.children;
+        for (let i = 0; i < children.length; i++) {
+          deepTraversal1(children[i], nodeList);
+        }
+      }
+      return nodeList;
+    };
+    let deepTraversal2 = node => {
+      let nodes = [];
+      if (node !== null) {
+        nodes.push(node);
+        let children = node.children;
+        for (let i = 0; i < children.length; i++) {
+          nodes = nodes.concat(deepTraversal2(children[i]));
+        }
+      }
+      return nodes;
+    };
+    // 非递归
+    let deepTraversal3 = node => {
+      let stack = [];
+      let nodes = [];
+      if (node) {
+        // 推入当前处理的node
+        stack.push(node);
+        while (stack.length) {
+          let item = stack.pop();
+          let children = item.children;
+          nodes.push(item);
+          // node = [] stack = [parent]
+          // node = [parent] stack = [child3,child2,child1]
+          // node = [parent, child1] stack = [child3,child2,child1-2,child1-1]
+          // node = [parent, child1-1] stack = [child3,child2,child1-2]
+          for (let i = children.length - 1; i >= 0; i--) {
+            stack.push(children[i]);
+          }
+        }
+      }
+      return nodes;
+    };
+
+    // 广度优先遍历 BFS
+    // 从图中某顶点v出发，在访问了v之后依次访问v的各个未曾访问过的邻接点，然后分别从这些邻接点出发依次访问它们的邻接点，并使得“先被访问的顶点的邻接点先于后被访问的顶点的邻接点被访问，直至图中所有已被访问的顶点的邻接点都被访问到。 如果此时图中尚有顶点未被访问，则需要另选一个未曾被访问过的顶点作为新的起始点，重复上述过程，直至图中所有顶点都被访问到为止。
+    let widthTraversal2 = node => {
+      let nodes = [];
+      let stack = [];
+      if (node) {
+        stack.push(node);
+        while (stack.length) {
+          let item = stack.shift();
+          let children = item.children;
+          nodes.push(item);
+          // 队列，先进先出
+          // nodes = [] stack = [parent]
+          // nodes = [parent] stack = [child1,child2,child3]
+          // nodes = [parent, child1] stack = [child2,child3,child1-1,child1-2]
+          // nodes = [parent,child1,child2]
+          for (let i = 0; i < children.length; i++) {
+            stack.push(children[i]);
+          }
+        }
+      }
+      return nodes;
+    };
+
+
+
+    
+    // 实现拷贝函数（深拷贝）
+    let _toString = Object.prototype.toString;
+    let map = {
+      array: 'Array',
+      object: 'Object',
+      function: 'Function',
+      string: 'String',
+      null: 'Null',
+      undefined: 'Undefined',
+      boolean: 'Boolean',
+      number: 'number',
+    };
+    let getType = item => {
+      return _toString.call(item).slice(8, -1);
+    };
+    let isTypeOf = (item, type) => {
+      return map[type] && map[type] === getType(item);
+    };
+    // 深复制 深度优先遍历
+    let DFSdeepClone = obj => {
+      let _obj = {};
+      if (isTypeOf(obj, 'array')) {
+        _obj = [];
+      } else if (isTypeOf(obj, 'object')) {
+        _obj = {};
+      }
+      for (item in obj) {
+        let val = obj[item];
+        if (isTypeOf(val, 'array') || isTypeOf(val, 'object')) {
+          _obj[item] = DFSdeepClone(val);
+        } else {
+          _obj[item] = obj[item];
+        }
+      }
+      return _obj;
+    };
+    // 广度优先遍历
+    let BFSdeepClone = obj => {
+      let origin = [obj];
+      let copyObj = {};
+      let copy = [copyObj];
+      // 去除环状数据
+      let visitedQueue = [];
+      let visitedCopyQueue = [];
+      while (origin.length > 0) {
+        let items = origin.shift();
+        // 操作的是当前对象
+        let _obj = copy.shift();
+        visitedQueue.push(items);
+        visitedCopyQueue.push(_obj);
+        for (let item in items) {
+          let val = items[item];
+          if (isTypeOf(val, 'object')) {
+            let index = visitedQueue.indexOf(val);
+            if (!~index) {
+              _obj[item] = {};
+              //下次while循环使用给空数组提供数据
+              origin.push(val);
+              // 推入引用对象
+              copy.push(_obj[item]);
+              visitedQueue.push(val);
+            } else {
+              // _obj[item] = visitedQueue[index]
+              _obj[item] = visitedCopyQueue[index];
+            }
+          } else if (isTypeOf(val, 'array')) {
+            // 数组类型在这里创建了一个空数组
+            _obj[item] = [];
+            //下次while循环使用给空数组提供数据
+            origin.push(val);
+            // 推入引用对象
+            copy.push(_obj[item]);
+          } else {
+            _obj[item] = val;
+          }
+        }
+      }
+      return copyObj;
+    };
+    let a = { a: 1, b: 2, c: { d: 3, e: 4 }, f: [1, 2] };
+    var b = DFSdeepClone(a);
+    a.c.e = 'a';
+    a.f[1] = 'a';
+    console.log(b);
+    // 广度深递归防止爆栈
+    const obj1 = {
+      foo: {
+        name: 'foo',
+        bar: {
+          name: 'bar',
+          baz: {
+            name: 'baz',
+            aChild: null, //待会让它指向obj.foo
+          },
+        },
+      },
+    };
+    obj1.foo.bar.baz.aChild = obj1.foo;
+    var c = BFSdeepClone(obj1);
+    obj1.foo.name = 'foo1';
+    console.log(c);
   </script>
 </html>
