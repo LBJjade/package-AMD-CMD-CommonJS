@@ -418,7 +418,7 @@
     console.log(c);
 
     // async
-    
+
     async function async1() {
       console.log('async1 start');
       await async2();
@@ -440,7 +440,230 @@
     });
     console.log('script end');
 
-    var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
-    Array.from(new Set(arr.flat(Infinity))).sort((a,b)=>{ return a-b})
+    // arr
+    var arr = [
+      [1, 2, 2],
+      [3, 4, 5, 5],
+      [6, 7, 8, 9, [11, 12, [12, 13, [14]]]],
+      10,
+    ];
+    Array.from(new Set(arr.flat(Infinity))).sort((a, b) => {
+      return a - b;
+    });
+
+    // typeof
+    function show(x) {
+      console.log(typeof x); // undefined
+      console.log(typeof 10); // number
+      console.log(typeof 'abc'); // string
+      console.log(typeof true); // boolean
+
+      console.log(typeof function() {}); //function
+
+      console.log(typeof [1, 'a', true]); //object
+      console.log(typeof { a: 10, b: 20 }); //object
+      console.log(typeof null); //object
+      console.log(typeof new Number(10)); //object
+    }
+    show();
+
+    function Fn() {}
+    Fn.prototype.name = '王福朋';
+    Fn.prototype.getYear = function() {
+      return 1988;
+    };
+
+    var fn = new Fn();
+    console.log(fn.name);
+    console.log(fn.getYear());
+
+    //     ### 创建图
+    // 下面声明图类，Vertex 用数组结构表示，Edge 用 map结构表示
+
+    function Graph() {
+      this.vertices = []; // 顶点集合
+      this.edges = new Map(); // 边集合
+    }
+    Graph.prototype.addVertex = function(v) {
+      // 添加顶点方法
+      this.vertices.push(v);
+      this.edges.set(v, []);
+    };
+    Graph.prototype.addEdge = function(v, w) {
+      // 添加边方法
+      let vEdge = this.edges.get(v);
+      vEdge.push(w);
+      let wEdge = this.edges.get(w);
+      wEdge.push(v);
+      this.edges.set(v, vEdge);
+      this.edges.set(w, wEdge);
+    };
+    Graph.prototype.toString = function() {
+      var s = '';
+      for (var i = 0; i < this.vertices.length; i++) {
+        s += this.vertices[i] + ' -> ';
+        var neighors = this.edges.get(this.vertices[i]);
+        for (var j = 0; j < neighors.length; j++) {
+          s += neighors[j] + ' ';
+        }
+        s += '\n';
+      }
+      return s;
+    };
+
+    var graph = new Graph();
+    var vertices = [1, 2, 3, 4, 5];
+    for (var i = 0; i < vertices.length; i++) {
+      graph.addVertex(vertices[i]);
+    }
+    graph.addEdge(1, 4); //增加边
+    graph.addEdge(1, 3);
+    graph.addEdge(2, 3);
+    graph.addEdge(2, 5);
+
+    console.log(graph.toString());
+    // 1 -> 4 3
+    // 2 -> 3 5
+    // 3 -> 1 2
+    // 4 -> 1
+    // 5 -> 2
+
+    Graph.prototype.dfs = function() {
+      var marked = [];
+      for (var i = 0; i < this.vertices.length; i++) {
+        if (!marked[this.vertices[i]]) {
+          dfsVisit(this.vertices[i]);
+        }
+      }
+
+      function dfsVisit(u) {
+        let edges = this.edges;
+        marked[u] = true;
+        console.log(u);
+        var neighbors = edges.get(u);
+        for (var i = 0; i < neighbors.length; i++) {
+          var w = neighbors[i];
+          if (!marked[w]) {
+            dfsVisit(w);
+          }
+        }
+      }
+    };
+
+    // 工厂模式
+    var lev = function() {
+      return '嘿哈';
+    };
+    function Parent() {
+      var Child = new object();
+      Child.name = '李小龙';
+      Child.age = '30';
+      Child.lev = lev;
+      return Child;
+    }
+    var x = Parent();
+    alert(x.name);
+    alert(x.lev());
+
+    //js构造函数模式
+    var lev = function() {
+      return '嘿哈';
+    };
+    function Parent() {
+      this.name = '李小龙';
+      this.age = '30';
+      this.lev = lev;
+    }
+    var x = Parent();
+    alert(x.name);
+    alert(x.lev());
+
+    // js原型模式
+    var lev = function() {
+      return '嘿哈';
+    };
+    function Parent() {
+      Parent.prototype.name = '李小龙';
+      Parent.prototype.age = '30';
+      Parent.prototype.lev = lev;
+    }
+    var x = Parent();
+    alert(x.name);
+    alert(x.lev());
+
+    // 构造函数+原型的js混合模式（推荐）
+    function Parent() {
+      this.name = '李小龙';
+      this.age = '30';
+    }
+    Parent.prototype.lev = function() {
+      return this.name;
+    };
+    var x = Parent();
+    alert(x.name);
+    alert(x.lev());
+
+    // 构造函数+原型的动态原型模式（推荐）
+    function Parent() {
+      this.name = '李小龙';
+      this.age = '30';
+      if (typeof Parent.lev == 'undefined') {
+        Parent.prototype.lev = function() {
+          return this.name;
+        };
+        Parent.lev = true;
+      }
+    }
+
+    var x = Parent();
+    alert(x.lev());
+
+    //
+
+    banana = {
+      color: 'yellow',
+    };
+    apple.say.call(banana); //此时的this的指向已经同过call（）方法改变了，指向的是banana，this.color就是banana.color='yellow';
+    //结果是My color is yellow
+    apple.say.apply(banana); //同理，此时的this的指向已经同过apply（）方法改变了，指向的是banana，this.color就是banana.color ='yellow';
+    //My color is yellow
+    // 如果传入的是 null：
+
+    apple.say.apply(null); // null是window下的，此时，this 就指向了window ，但是window下并没有clolr这个属性，因此this.clolr就是window.color=undefined;
+    //My color is undefined
+
+    var array1 = [12, 'foo', { name: 'Joe' }, -2458];
+    var array2 = ['Doe', 555, 100];
+    Array.prototype.push.call(array1, array2);
+    // 这里用 call 第二个参数不会把 array2 当成一个数组,而是一个元素
+    //等价于array1.push(‘‘'Doe' , 555 , 100’’);
+    //array1.length=5;
+
+    Array.prototype.push.apply(array1, array2); // 这里用 apply 第二个参数是一个数组
+
+    // 等价于:  array1.push('Doe' , 555 , 100);
+    //array1.length=7;
+
+    var divElements = document.getElementsByTagName('div'); //虽然 divElements 有length属性，但是他是一个伪数组，不能使用数组里面的方法
+    Array.isArray(divElements); // false
+
+    var domNodes = Array.prototype.slice.call(
+      document.getElementsByTagName('div'),
+    );
+    // 将数组对象Array里的this指向伪数组document.getElementsByTagName('div')，
+    //slice() 方法可从已有的数组中返回选定的元素，不传参数是，返回整个数组
+    Array.isArray(domNodes); // true
+
+    var bar = function() {
+      console.log(this.x);
+    };
+    var foo = {
+      x: 3,
+    };
+    bar(); // undefined
+    var func = bar.bind(foo); //此时this已经指向了foo，但是用bind（）方法并不会立即执行，而是创建一个新函数，如果要直接调用的话 可以 bar.bind(foo)（）
+
+    func(); // 3
+    
   </script>
 </html>
