@@ -1,0 +1,39 @@
+<script>
+     var salesOffices = {};
+     salesOffices.clientList = [];
+             
+     salesOffices.listen = function(key, fn) {
+         if (!this.clientList[key]) {
+             this.clientList[key] = [];
+         }
+         this.clientList[key].push(fn);
+    };
+    
+    salesOffices.trigger = function() {
+        var key = Array.prototype.shift.call(arguments),
+                fns = this.clientList[key];
+        if (!fns || fns.length === 0) {
+            return false;
+        }
+        for (var i=0, fn; fn=fns[i++];) {
+            fn.apply(this, arguments);
+        }
+    };
+    
+    salesOffices.listen('squareMeters88', function(price, squareMeter) {
+        console.log('price is :' + price);
+        console.log('squareMeter: ' + squareMeter);
+    });
+    
+    salesOffices.listen('squareMeters110', function(price, squareMeter) {
+        console.log('price is :' + price);
+        console.log('squareMeter: ' + squareMeter);
+    });
+    
+    console.log(salesOffices);
+    salesOffices.trigger('squareMeters88', 20000, 88);
+    salesOffices.trigger('squareMeters110', 30000, 110);
+    
+    
+
+</script>
