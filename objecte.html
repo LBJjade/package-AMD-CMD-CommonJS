@@ -7,6 +7,36 @@
     <title>Document</title>
   </head>
   <body></body>
+  <div id="div1">test</div>
+  <script>
+    var a = {};
+    a.aa = 1;
+    a.bb = 2;
+    a.cc = 3;
+    with (a) {
+      console.log(aa);
+      console.log(bb);
+      console.log(cc);
+    }
+    var b = function() {
+      this.a = 111;
+      this.b = 222;
+    };
+    b.prototype.test = function(param) {
+      this.a = param;
+      console.log(this.a);
+    };
+    with (new b()) {
+      test('just for test');
+    }
+    var div1 = document.getElementById('div1');
+    with (div1.style) {
+      width = '200px';
+      height = '300px';
+      background = 'red';
+      color = 'white';
+    }
+  </script>
   <script type="text/javascript">
     // 第一种方式：字面量
     var o1 = { name: 'o1' };
@@ -664,6 +694,5 @@
     var func = bar.bind(foo); //此时this已经指向了foo，但是用bind（）方法并不会立即执行，而是创建一个新函数，如果要直接调用的话 可以 bar.bind(foo)（）
 
     func(); // 3
-    
   </script>
 </html>
