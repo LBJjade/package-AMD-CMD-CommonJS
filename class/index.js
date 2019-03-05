@@ -231,3 +231,39 @@ l(nono.habits);
 var nonono = new InheritF('nono');
 l(nonono.habits);
 //继承的方法千万种，万变不离其宗;
+
+
+// 递归
+function deepClone(obj){
+  let objClone = Array.isArray(obj)?[]:{};
+  if(obj && typeof obj==="object"){
+      for(key in obj){
+          if(obj.hasOwnProperty(key)){
+              //判断ojb子元素是否为对象，如果是，递归复制
+              if(obj[key]&&typeof obj[key] ==="object"){
+                  objClone[key] = deepClone(obj[key]);
+              }else{
+                  //如果不是，简单复制
+                  objClone[key] = obj[key];
+              }
+          }
+      }
+  }
+  return objClone;
+}    
+let a=[1,2,3,4],
+  b=deepClone(a);
+a[0]=2;
+console.log(a,b);
+
+// JSON.stringify parse
+function deepClone(obj){
+  let _obj = JSON.stringify(obj),
+      objClone = JSON.parse(_obj);
+  return objClone
+}    
+let a=[0,1,[2,3],4],
+  b=deepClone(a);
+a[0]=1;
+a[2][0]=1;
+console.log(a,b);
