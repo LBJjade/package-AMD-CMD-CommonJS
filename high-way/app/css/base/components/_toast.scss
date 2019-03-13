@@ -1,0 +1,32 @@
+//toast
+$toast-text-color: #fff; //文本颜色
+$toast-theme-color: #4f4f4f; //背景和阴影颜色
+
+.u-toast {
+    position: fixed;
+    left: 50%;
+    top:45%;
+    transform:translate(-50%,-50%) scale(1);
+    width: 100%;
+    height: 80px;
+
+    font-size: 0;
+    text-align: center;
+
+    border-radius: 50px;
+    z-index: 9999;
+
+    > .message {
+      display: inline-block;
+      max-width: 92%;
+      padding: 0 32px;
+      font-size: 24px;
+      line-height: 80px;
+      color: $toast-text-color;
+      word-wrap: break-word;
+
+      box-shadow: 0 2px 6px $toast-theme-color;
+      border-radius: 50px;
+      background: $toast-theme-color;
+    }
+}

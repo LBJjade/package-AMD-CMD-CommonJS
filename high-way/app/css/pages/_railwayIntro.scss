@@ -1,0 +1,74 @@
+.page-railwayIntro{
+  z-index: 1;
+  width:750px;
+  min-height: 1206px;
+  margin: 0 auto;
+  padding-top: 1px;
+  background: url(../images/help-bg.png);
+  background-size: 100% 100%;
+  .railwayIntro-header{
+  	position:relative;
+  	z-index: 2;
+  	padding-bottom: 60px;
+  	.railwayIntro-title{
+		font-size: 58px;
+		font-weight: bold;
+		color: #fff;
+		margin: 0 auto;
+		margin-top: 39px;
+		width: 750px;
+		text-align: center;
+		padding: 0;
+		line-height: 58px;
+    }
+    .railwayIntro-subheading{
+		width: 230px;
+		height: 50px;
+		background-image: url(../images/support-route-icon.png);
+		background-size: 100% 100%;
+		margin: 25px auto;
+    }
+    .railwayIntro-stops{
+		width: 690px;
+		margin: 0 auto;
+		font-size: 27px;
+		display: flex;
+		flex-direction: column;
+		border-radius: 10px;
+		overflow: hidden;
+		color: #383838;
+		li{
+			display: flex;
+			flex-direction: row;
+			min-height: 88px;
+			background-color: rgb(233,243,255);
+			&:nth-child(2n+1){
+			  background-color: #fff;
+			}
+		}
+	  	.railwayIntro-route{
+          width: 33%;
+          text-indent: 40px;
+          padding-top: 42px;
+		}
+		.railwayIntro-stopName{
+		  width: 66%;
+		  padding-top: 40px;
+		  padding-bottom: 40px;
+		}
+		.railwayIntro-stops-title{
+		  display: flex;
+		  flex-direction: row;
+		  height: 90px;
+		  background-color: #75A9F7;
+		  border-top-right-radius: 10px;
+		  border-top-left-radius: 10px;
+		  color: #fff;
+		   .h{
+	          padding: 0;
+	          line-height: 90px;
+	        }
+		}
+    }
+  }
+}

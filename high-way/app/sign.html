@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="xxx,xxx,xxx" name="keywords">
+    <meta content="" name="description">
+    <meta name="front-end technicist" content="Lin">
+    <link rel="shortcut icon" href="http://www.cmbchina.com/cmb.ico" type="images/x-icon">
+    <title>签约</title>
+    <script>
+      (function (a, c) {
+        var d = a.documentElement, e = function () {
+          var b = a.documentElement.getBoundingClientRect().width || d.clientWidth; b && (d.style.fontSize = 750 <= b ? '40px' : b / 750 * 40 + 'px')
+        };
+        a.addEventListener && (c.addEventListener('orientationchange' in c ? 'orientationchange' : 'resize', e, !1),
+        a.addEventListener('DOMContentLoaded', e, !1))
+      })(document, window);
+      </script>
+      <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body>
+  <!--如果需要显示或者隐藏元素，请添加或者删除类f-hide -->
+    <div class="wrapper page-sign" id="wrapper">
+      <!-- 签约进度 e-1 e-2 e-3 e-4  -->
+      <header class="u-progress-box e-4">
+        <div class="progress-outer">
+          <div class="progress-inner"></div>
+        </div>
+        <ul class="progress-tips">
+          <li class="progress-tips-item">填写基本信息</li>
+          <li class="progress-tips-item">上传行驶证</li>
+          <li class="progress-tips-item">确认详细资料</li>
+          <li class="progress-tips-item">签约代扣</li>
+        </ul>
+      </header>
+      <!-- 主要内容框 -->
+      <div class="container">
+        <span class="title">签约一卡通</span>
+        <div class="desc">签约后可使用一卡通自动扣费</div>
+        <ul class="pay-list">
+          <li class="item">
+            <label for="radio">
+              <img class="pay-icon" src="./images/cmpc-pay-icon.png" alt="">
+              <span>一网通支付</span>
+              <input type="radio" id="radio" checked>
+              <img class="check-icon" src="./images/check-icon-sm.png" alt="">
+            </label>
+          </li>
+        </ul>
+        <p class="agree-rule"><span id="isAgree" class="is-agree e-active"></span>我已阅读并同意<span class="em">《一卡通代扣协议》</span> </p>
+        <section class="btn-group">
+          <a href="javascript:;" id="nextBtn" class="u-btn e-full">签约</a>
+        </section>
+      </div>
+    </div>
+
+    <script src="./js/libs/jquery.min.js"></script>
+    <script src="./js/pages/sign.js"></script>
+</body>
+
+</html>

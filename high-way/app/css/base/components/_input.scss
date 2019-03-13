@@ -1,0 +1,121 @@
+.u-input-box {
+  text-align: left;
+  .u-input-header {
+    margin-bottom: 20px;
+    font-size:32px;
+    line-height: 1;
+    font-weight:400;
+    color:#383838;
+  }
+
+  .u-input-inner {
+    position: relative;
+    padding: 20px 34px 20px 200px;
+    border-radius:8px;
+    font-size: 0;
+    @include border-width-1px(1, 1, 1, 1, #E1E1E1, 8px);
+
+    .u-label {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 32px;
+      font-size:32px;
+      font-weight:400;
+      color:#929292;
+    }
+
+    .u-input {
+      width: 100%;
+      font-size:32px;
+      font-weight:400;
+      color:#383838;
+      line-height:50px;
+    }
+    .u-textarea {
+      width: 100%;
+      font-size:32px;
+      font-weight:400;
+      color:#383838;
+      line-height:50px;
+      resize: none;
+      word-break:break-all;
+      border: none;
+    }
+    input::-webkit-input-placeholder {
+      color: #999;
+    }
+    textarea::-webkit-input-placeholder {
+      color: #999;
+    }
+  }
+
+  // 有三角形选择图标
+  &.e-select {
+    .u-input-inner {
+      &::after {
+        position: absolute;
+        content: '';
+        top: 42px;
+        left: 135px;
+        height: 0;
+        width: 0;
+        border-width: 14px;
+        border-style: solid;
+        border-color: #E1E1E1 transparent transparent transparent;
+      }
+    }
+  }
+
+  // 列表式输入框
+  &.e-input-list {
+    .u-input-inner {
+      padding-left: 265px;
+      border-radius: 0;
+      border-width: 1Px 1Px 0Px 1Px; // ignored  postcss-pxtorem
+      @media
+      only screen and (-webkit-min-device-pixel-ratio: 2),
+      only screen and (   min--moz-device-pixel-ratio: 2),
+      only screen and (     -o-min-device-pixel-ratio: 2/1),
+      only screen and (        min-device-pixel-ratio: 2),
+      only screen and (                min-resolution: 192dpi),
+      only screen and (                min-resolution: 2dppx) {
+        border: none;
+        &::before {
+          border-width: 1Px 1Px 0Px 1Px;
+          border-radius: 0;
+        }
+      }
+
+      &:first-child {
+        border-radius: 8px;
+        @media
+        only screen and (-webkit-min-device-pixel-ratio: 2),
+        only screen and (   min--moz-device-pixel-ratio: 2),
+        only screen and (     -o-min-device-pixel-ratio: 2/1),
+        only screen and (        min-device-pixel-ratio: 2),
+        only screen and (                min-resolution: 192dpi),
+        only screen and (                min-resolution: 2dppx) {
+          &::before {
+            border-radius: 16px 16px 0 0;
+          }
+        }
+      }
+      &:last-child {
+        border-width: 1Px 1Px 1Px 1Px;
+        @media
+        only screen and (-webkit-min-device-pixel-ratio: 2),
+        only screen and (   min--moz-device-pixel-ratio: 2),
+        only screen and (     -o-min-device-pixel-ratio: 2/1),
+        only screen and (        min-device-pixel-ratio: 2),
+        only screen and (                min-resolution: 192dpi),
+        only screen and (                min-resolution: 2dppx) {
+          &::before {
+            border-width: 1Px 1Px 1Px 1Px;
+          }
+        }
+      }
+    }
+  }
+
+}

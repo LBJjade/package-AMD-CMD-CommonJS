@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="xxx,xxx,xxx" name="keywords">
+    <meta content="" name="description">
+    <meta name="front-end technicist" content="Lin">
+    <link rel="shortcut icon" href="http://www.cmbchina.com/cmb.ico" type="images/x-icon">
+    <title>上传驾驶证</title>
+    <script>
+      (function (a, c) {
+        var d = a.documentElement, e = function () {
+          var b = a.documentElement.getBoundingClientRect().width || d.clientWidth; b && (d.style.fontSize = 750 <= b ? '40px' : b / 750 * 40 + 'px')
+        };
+        a.addEventListener && (c.addEventListener('orientationchange' in c ? 'orientationchange' : 'resize', e, !1),
+        a.addEventListener('DOMContentLoaded', e, !1))
+      })(document, window);
+      </script>
+      <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body>
+  <!--如果需要显示或者隐藏元素，请添加或者删除类f-hide -->
+    <div class="wrapper page-upload-license" id="wrapper">
+       <!-- 签约进度 e-1 e-2 e-3 e-4  -->
+       <header class="u-progress-box e-2">
+          <div class="progress-outer">
+            <div class="progress-inner"></div>
+          </div>
+          <ul class="progress-tips">
+            <li class="progress-tips-item">填写基本信息</li>
+            <li class="progress-tips-item">上传行驶证</li>
+            <li class="progress-tips-item">确认详细资料</li>
+            <li class="progress-tips-item">签约代扣</li>
+          </ul>
+        </header>
+        <!-- 容器 -->
+        <div class="container">
+          <span class="u-help"></span>
+          <div class="main-title-box">
+            <span class="title">请上传行驶证照片</span>
+            <div class="desc">请保证照片清晰，字迹可见且与申办信息相符</div>
+          </div>
+          <!-- 上传正面 -->
+          <div class="u-upload-box">
+            <div class="upload-inner">
+              <img src="./images/upload_1.png" alt="">
+            </div>
+          </div>
+          <!-- 上传副面 -->
+          <div class="u-upload-box">
+            <div class="upload-inner">
+              <img src="./images/upload_2.png" alt="">
+            </div>
+          </div>
+
+          <div class="main-title-box e-top">
+            <span class="title">请上传车牌照片</span>
+            <div class="desc">请保证照片清晰，字迹可见且与申办信息相符</div>
+          </div>
+          <!-- 上传车牌 -->
+          <div class="u-upload-box">
+            <div class="upload-inner">
+              <img src="./images/upload_3.png" alt="">
+            </div>
+          </div>
+          <!-- 下一步 -->
+          <div class="action">
+            <a href="javascript:;" class="btn-next u-btn e-full">下一步</a>
+          </div>
+        </div>
+    </div>
+    <!-- <script src="./js/pages/base.js"></script> -->
+</body>
+
+</html>

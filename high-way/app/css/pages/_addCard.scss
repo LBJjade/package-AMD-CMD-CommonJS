@@ -1,0 +1,180 @@
+.page-add-card {
+  padding-bottom: 60px;
+  .container {
+    margin: 0 30px;
+    padding: 40px 20px 40px;
+    background: #FFFFFF;
+    box-shadow:0px 0px 10px 0px rgba(89,149,239,0.1);
+    border-radius:8px;
+  }
+  // 选择车牌
+  .plate-box {
+    width:520px;
+    height:160px;
+    margin: 36px auto 0;
+    padding: 10px;
+    background:linear-gradient(270deg,rgba(84,184,244,1),rgba(89,149,239,1));
+    border-radius:8px;
+
+    .plate-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding-left: 250px;
+      background:rgba(96,174,242,0);
+      border:2px solid rgba(255, 255, 255, 1);
+      border-radius:8px;
+
+      &::after {
+        position: absolute;
+        content: '';
+        top: 66px;
+        left: 164px;
+        height: 0;
+        width: 0;
+        border-width: 14px;
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 0.6) transparent transparent transparent;
+      }
+
+      .plate-place {
+        position: absolute;
+        left: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size:60px;
+        font-weight:400;
+        color:rgba(255,255,255,1);
+        letter-spacing: 8px;
+      }
+
+      .plate-num {
+        width: 100%;
+        font-size:60px;
+        font-weight:400;
+        color:rgba(255,255,255,1);
+        background: transparent;
+      }
+    }
+  }
+  // 车牌颜色
+  .choose-color-box {
+    margin-top: 50px;
+    .title {
+      font-size:32px;
+      font-weight:400;
+      color:rgba(56,56,56,1);
+    }
+
+    .color-list {
+      margin-top: 16px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .color-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-top: 12px;
+        width:154px;
+        height: 60px;
+        font-size:20px;
+        font-weight:bold;
+        color:rgba(255,255,255,1);
+        border-radius:4px;
+
+        &:not(:nth-of-type(4n + 1)) {
+          margin-left: 11px;
+        }
+
+        &.e-active::after {
+          position: absolute;
+          content: '';
+          top: 50%;
+          left: -4px;
+          transform: translate(0, -50%);
+          width: 158px;
+          height: 64px;
+          border: 2px solid rgba(89, 149, 239, 1);
+          border-radius: 8px;
+        }
+
+
+      }
+    }
+  }
+
+  .e-type-0 {
+    background:linear-gradient(270deg,rgba(84,184,244,1),rgba(89,149,239,1));
+  }
+  .e-type-1 {
+    color:rgba(0,0,0,1);
+    background:linear-gradient(270deg,rgba(245,222,99,1),rgba(244,206,41,1))
+  }
+  .e-type-2 {
+    background:linear-gradient(270deg,rgba(76,76,75,1),rgba(50,50,50,1));
+  }
+  .e-type-3 {
+    color:rgba(0,0,0,1);
+    background:linear-gradient(180deg,rgba(239,239,239,0.68),rgba(217,216,216,1));
+  }
+  .e-type-4 {
+    color:rgba(0,0,0,1);
+    background:linear-gradient(0deg,rgba(186,235,171,1),rgba(95,180,77,1))
+  }
+  .e-type-5 {
+    color:rgba(0,0,0,1);
+    background-image: linear-gradient(270deg,rgba(245,222,99,1),rgba(244,206,41,1));
+    background-position: 0% 33%;
+    background-repeat: no-repeat;
+    background-color: #6EBD5D;
+    background-size: 41% 100%;
+  }
+  // 表单
+  .form-box {
+    .u-input-box {
+      margin-top: 60px;
+    }
+  }
+  // 我已阅读并同意
+  .agree-rule {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size:24px;
+    font-weight:400;
+    color:rgba(146,146,146,1);
+
+    .em {
+      color: #383838;
+    }
+
+    .is-agree {
+      margin: 0 10px;
+      display: inline-block;
+      vertical-align: center;
+      width:24px;
+      height:24px;
+      border-radius:50%;
+      border: 1px solid #ccc;
+
+      &.e-active {
+        border: none;
+        background: url(../images/check-icon-sm.png) no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+  }
+
+  // 下一步
+  .action {
+    margin: 40px auto 0;
+    width: 590px;
+  }
+}

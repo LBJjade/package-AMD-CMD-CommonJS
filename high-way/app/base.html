@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="xxx,xxx,xxx" name="keywords">
+    <meta content="" name="description">
+    <meta name="front-end technicist" content="Lin">
+    <link rel="shortcut icon" href="http://www.cmbchina.com/cmb.ico" type="images/x-icon">
+    <title>基础页面</title>
+    <script>
+      (function (a, c) {
+        var d = a.documentElement, e = function () {
+          var b = a.documentElement.getBoundingClientRect().width || d.clientWidth; b && (d.style.fontSize = 750 <= b ? '40px' : b / 750 * 40 + 'px')
+        };
+        a.addEventListener && (c.addEventListener('orientationchange' in c ? 'orientationchange' : 'resize', e, !1),
+        a.addEventListener('DOMContentLoaded', e, !1))
+      })(document, window);
+      </script>
+      <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body>
+  <!--如果需要显示或者隐藏元素，请添加或者删除类f-hide -->
+    <div class="wrapper page-base" id="wrapper">
+      <h3>给你们复制用的，以下是基础组件</h3>
+
+      <!-- 以下 复制后 可删除 -->
+      <!-- 基础按钮 -->
+      <div style="width: 80%;margin: 40px auto 0;">
+        <section style="margin: 20px auto 0;">
+          <div>
+            <a href="javascript:;" class="u-btn e-full">默认按钮 u-btn</a>
+          </div>
+          <div style="margin: 20px auto 0;">
+            <a href="javascript:;" class="u-btn e-border e-full">边框朴素按钮 u-btn e-border</a>
+          </div>
+          <div style="margin: 20px auto 0;">
+            <div class="u-input-box">
+              <p class="u-input-header">绑定手机号码</p>
+              <div class="u-input-inner">
+                <label class="u-label">手机号码</label>
+                <input class="u-input" type="text" placeholder="请输入手机号码"/>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- 基础表单 -->
+        <section style="margin: 20px auto 0;">
+          <div class="u-input-box e-input-list">
+            <div class="u-input-inner">
+              <label class="u-label">手机号码</label>
+              <input class="u-input" type="text" placeholder="请输入手机号码"/>
+            </div>
+            <div class="u-input-inner">
+              <label class="u-label">车辆识别代码</label>
+              <input class="u-input" type="text" placeholder="请输入手机号码"/>
+            </div>
+            <div class="u-input-inner">
+              <label class="u-label">行驶证地址</label>
+              <input class="u-input" type="text" placeholder="请输入手机号码"/>
+            </div>
+          </div>
+        </section>
+
+        <!-- toast -->
+        <section class="u-toast"><div class="message">我是toast组件</div></section>
+
+        <!-- 弹窗 规则类弹窗 e-rule-->
+        <section class="u-pop e-rule">
+          <div class="pop-content">
+            <header class="pop-header">我是标题</header>
+            <div class="content">
+              <div class="pop-message">
+                <p>1 活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则</p>
+                <p>2 活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则</p>
+                <p>3 活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则</p>
+                <p>4 活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则</p>
+              </div>
+            </div>
+            <footer class="pop-footer">
+              <a href="javascript:;">确定</a>
+              <!-- <a href="javascript:;">取消</a> -->
+            </footer>
+          </div>
+        </section>
+
+        <!-- 弹窗 普通弹窗 -->
+        <section class="u-pop">
+          <div class="pop-content">
+            <header class="pop-header">我是标题</header>
+            <div class="content">
+              <div class="pop-message">
+                <p>您好，我是提示信息</p>
+              </div>
+            </div>
+            <footer class="pop-footer">
+              <a href="javascript:;">确定</a>
+              <a href="javascript:;">取消</a>
+            </footer>
+          </div>
+        </section>
+
+        <!-- loading -->
+        <section class="u-loading" style="display: block">
+          <div class="loading-inner">
+            <div class="icon-loading"></div>
+            <div class="loading-toast">
+              数据加载中
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <!-- <script src="./js/pages/base.js"></script> -->
+</body>
+
+</html>

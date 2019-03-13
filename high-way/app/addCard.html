@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="xxx,xxx,xxx" name="keywords">
+    <meta content="" name="description">
+    <meta name="front-end technicist" content="Lin">
+    <link rel="shortcut icon" href="http://www.cmbchina.com/cmb.ico" type="images/x-icon">
+    <title>添加车辆</title>
+    <script>
+      (function (a, c) {
+        var d = a.documentElement, e = function () {
+          var b = a.documentElement.getBoundingClientRect().width || d.clientWidth; b && (d.style.fontSize = 750 <= b ? '40px' : b / 750 * 40 + 'px')
+        };
+        a.addEventListener && (c.addEventListener('orientationchange' in c ? 'orientationchange' : 'resize', e, !1),
+        a.addEventListener('DOMContentLoaded', e, !1))
+      })(document, window);
+      </script>
+      <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body>
+  <!--如果需要显示或者隐藏元素，请添加或者删除类f-hide -->
+    <div class="wrapper page-add-card" id="wrapper">
+      <!-- 签约进度 e-1 e-2 e-3 e-4  -->
+      <header class="u-progress-box e-1">
+          <div class="progress-outer">
+            <div class="progress-inner"></div>
+          </div>
+          <ul class="progress-tips">
+            <li class="progress-tips-item">填写基本信息</li>
+            <li class="progress-tips-item">上传行驶证</li>
+            <li class="progress-tips-item">确认详细资料</li>
+            <li class="progress-tips-item">签约代扣</li>
+          </ul>
+        </header>
+        <!-- 容器 -->
+        <div class="container">
+          <div class="main-title-box">
+            <span class="title">请填写车辆信息</span>
+            <div class="desc">请保证车辆号码输入无误，防止高速缴费失败</div>
+          </div>
+          <!-- 选择车牌 -->
+          <div id="plateBox" class="plate-box e-type-0">
+            <div class="plate-inner">
+              <span id="selectPlate" data-id="1" data-letter-id="1" data-letter="A" data-area="粤" class="plate-place">粤A</span>
+              <input class="plate-num" type="text" value="R8888" />
+            </div>
+          </div>
+          <!-- 车牌颜色 -->
+          <div class="choose-color-box">
+            <h3 class="title">车牌颜色</h3>
+            <ul id="colorList" class="color-list">
+              <!-- 选择用类名 e-active -->
+              <li class="color-item e-type-0 e-active" data-id="0">粤A  00000</li>
+              <li class="color-item e-type-1"  data-id="1">粤A  00000</li>
+              <li class="color-item e-type-2"  data-id="2">粤A  00000</li>
+              <li class="color-item e-type-3"  data-id="3">粤A  00000</li>
+              <li class="color-item e-type-4"  data-id="4">粤A  00000</li>
+              <li class="color-item e-type-5"  data-id="5">粤A  00000</li>
+            </ul>
+          </div>
+
+          <!-- 表单 -->
+          <div class="form-box">
+              <div class="u-input-box e-select">
+                <p class="u-input-header">座位数(座)/吨位数(吨)</p>
+                <div class="u-input-inner">
+                  <label id="selectCardType" data-id="1" class="u-label">客车</label>
+                  <input class="u-input" type="text" placeholder="请输入座位数"/>
+                </div>
+              </div>
+              <div class="u-input-box">
+                <p class="u-input-header">绑定手机号码</p>
+                <div class="u-input-inner">
+                  <label class="u-label">手机号码</label>
+                  <input class="u-input" type="text" placeholder="请输入手机号码"/>
+                </div>
+              </div>
+          </div>
+          <!-- 我已阅读并同意《车牌付用户协议》 -->
+          <!-- 如果选中，给span class="is-agree"></span>添加类名e-active -->
+          <p class="agree-rule"><span id="isAgree" class="is-agree e-active"></span>我已阅读并同意<span class="em">《客户信息授权条款》</span> </p>
+          <!-- 下一步 -->
+          <div class="action">
+            <a href="javascript:;" id="nextBtn" class="btn-next u-btn e-full">下一步</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 选择器挂载的dom -->
+    <div class="select-picker"></div>
+
+    <script src="./js/libs/jquery.min.js"></script>
+    <script src="./js/libs/iosSelect.min.js"></script>
+    <script src="./js/pages/addCard.js"></script>
+</body>
+
+</html>

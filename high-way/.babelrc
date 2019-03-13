@@ -1,0 +1,21 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "targets": {
+        "modules": false,
+        "esmodules": false,
+        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+      }
+    }],
+    "es2015",
+    "stage-2"
+  ],
+  "env": {
+    "test": {
+      "presets": ["env", "stage-2"],
+      "plugins": ["istanbul"]
+    }
+  },
+  "ignore": ["./app/js/libs/*.min.js"]
+}

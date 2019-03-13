@@ -1,0 +1,127 @@
+.page-sign {
+  padding: 0 30px;
+
+  .container {
+    background: #fff;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    padding: 40px 0;
+
+    .title {
+      color: #383838;
+      font-size: 32px;
+      font-weight: 400;
+      position: relative;
+      display: inline-block;
+      width: 170px;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 30px;
+        height: 2px;
+        top: 50%;
+        transform: translate(0, -50%);
+        background: #E1E1E1;
+      }
+
+      &::before {
+        left: -40px;
+      }
+
+      &::after {
+        right: -40px;
+      }
+    }
+
+    .desc {
+      color: #929292;
+      font-size: 24px;
+    }
+
+    .pay-list {
+      padding: 40px 20px 38px;
+
+      .item {
+        @include border-width-1px(1, 1, 1, 1, #E1E1E1, 8px);
+
+        label {
+          height: 88px;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          text-align: left;
+          padding: 0 30px;
+
+          .pay-icon {
+            width: 40px;
+          }
+
+          span {
+            margin-left: 10px;
+            font-size: 32px;
+            color: #383838;
+          }
+
+          input[type='radio'] {
+            display: none;
+
+            &:checked+.check-icon {
+              display: inline-block;
+            }
+          }
+
+          .check-icon {
+            display: none;
+            width: 30px;
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translate(0, -50%);
+          }
+        }
+      }
+    }
+
+    // 我已阅读并同意
+    .agree-rule {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 400;
+      color: rgba(146, 146, 146, 1);
+
+      .em {
+        color: #383838;
+      }
+
+      .is-agree {
+        margin: 0 10px;
+        display: inline-block;
+        vertical-align: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+
+        &.e-active {
+          border: none;
+          background: url(../images/check-icon-sm.png) no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+    }
+
+    .btn-group {
+      width: 590px;
+      margin: 0 auto;
+      padding: 36px 0 0;
+    }
+  }
+}

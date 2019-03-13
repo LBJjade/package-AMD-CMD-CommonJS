@@ -1,0 +1,17 @@
+@import './base/reset.scss'; // 公共的
+@import './base/mixins.scss'; // 公共的
+@import './base/common.scss'; // 公共的
+
+@import './libs/iosSelect.scss'; // select插件
+@import './libs/picker.scss'; //picker的样式
+
+@import './pages/index.scss'; //首页的样式
+@import './pages/success.scss'; // 开通成功的页面
+@import './pages/sign.scss'; // 签约一卡通页面
+@import './pages/carDetails.scss'; //车辆详情的样式
+@import './pages/driveLicenseInfo.scss'; // 行驶证资料页面
+@import './pages/addCard.scss'; // 添加车辆样式
+@import './pages/uploadLicense.scss'; // 添加车辆样式
+@import './pages/help.scss'; // 使用帮助样式
+@import './pages/railwayIntro.scss'; // 支持路段样式
+@import './pages/directionUse.scss'; // 使用说明样式

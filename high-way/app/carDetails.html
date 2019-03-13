@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no, shrink-to-fit=no"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="xxx,xxx,xxx" name="keywords" />
+    <meta content="" name="description" />
+    <meta name="front-end technicist" content="Lin" />
+    <link
+      rel="shortcut icon"
+      href="http://www.cmbchina.com/cmb.ico"
+      type="images/x-icon"
+    />
+    <title>页面一</title>
+    <script>
+      (function(a, c) {
+        var d = a.documentElement,
+          e = function() {
+            var b =
+              a.documentElement.getBoundingClientRect().width || d.clientWidth;
+            b && (d.style.fontSize = 750 <= b ? '40px' : (b / 750) * 40 + 'px');
+          };
+        a.addEventListener &&
+          (c.addEventListener(
+            'orientationchange' in c ? 'orientationchange' : 'resize',
+            e,
+            !1,
+          ),
+          a.addEventListener('DOMContentLoaded', e, !1));
+      })(document, window);
+    </script>
+    <link rel="stylesheet" href="./css/app.css" />
+  </head>
+
+  <body>
+    <!-- 如果需要显示或者隐藏元素，请添加或者删除类f-hide -->
+    <div class="wrapper page-car-details" id="wrapper">
+      <!-- swiper 左滑 -->
+      <div class="list">
+        <ul>
+          <li>
+            <a href="#">
+              <div class="plate-number-banner e-type-0">
+                <!-- 车牌号 -->
+                <div class="plate-number-num">
+                  <!-- 可以修改这里的图片改变不同车牌的点 -->
+                  <!-- <img src="./images/blur@2x.png" alt="" /> -->
+                  <i class="point"></i>粤A88800
+                </div>
+                <div class="plate-number-car">小型轿车</div>
+                <!-- 车牌信息 -->
+                <div class="plate-number-details">已绑定一卡通代扣</div>
+              </div>
+              <span>
+                <div>
+                  <div class="container-div">
+                    <div>
+                      <div><img src="./images/edit.png" alt="" /></div>
+                      <div class="text-div">编辑</div>
+                    </div>
+                  </div>
+                </div>
+              </span></a
+            >
+          </li>
+        </ul>
+      </div>
+      <!-- 时间选择栏目 -->
+      <div class="picker-item">
+        <div class="picker-item-left">
+          <div id="date">
+            <!-- 选择日期月份 -->
+            <input
+              type="text"
+              class="form-control js-month-picker"
+              value="2018-12"
+            />
+          </div>
+          <div><img src="./images/arrow-icon@2x.png" alt="" /></div>
+        </div>
+        <div class="picker-item-right">
+          <div class="float-div">
+            <!-- 选择日期精确到日 -->
+            <input
+              type="text"
+              class="form-control js-full-picker"
+              value="2018-12-12"
+            />
+            <div class="image-div"><img src="./images/date.png" alt="" /></div>
+            <div class="text-div">选择日期</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 数据列表 -->
+      <div class="data-list">
+        <!-- 一行数据 -->
+        <div class="data-list-item">
+          <div class="data-list-item-header">
+            <!-- 扣费数据 -->
+            <div class="header-left">实际扣款：<span>￥0.01</span></div>
+            <div class="header-right"><span>扣款成功</span></div>
+          </div>
+          <div class="data-list-item-details">
+            <div class="detail-left">
+              <div class="detail-img">
+                <img src="./images/circle.png" alt="" />
+              </div>
+              <div class="detail-left-address">
+                <!-- 起点终点 -->
+                <div class="detail-address">机荷东-福民</div>
+                <div class="detail-address">机荷东-福民</div>
+              </div>
+            </div>
+            <div class="detail-right">
+              <div class="detail-right-time">
+                <!-- 时间数据 -->
+                <div class="detail-time">12月11日 14:12:01</div>
+                <div class="detail-time">12月11日 14:12:01</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 以下重复 -->
+        <div class="data-list-item">
+          <div class="data-list-item-header">
+            <div class="header-left">实际扣款：<span>￥0.01</span></div>
+            <div class="header-right"><span>扣款成功</span></div>
+          </div>
+          <div class="data-list-item-details">
+            <div class="detail-left">
+              <div class="detail-img">
+                <img src="./images/circle.png" alt="" />
+              </div>
+              <div class="detail-left-address">
+                <div class="detail-address">机荷东-福民</div>
+                <div class="detail-address">机荷东-福民</div>
+              </div>
+            </div>
+            <div class="detail-right">
+              <div class="detail-right-time">
+                <div class="detail-time">12月11日 14:12:01</div>
+                <div class="detail-time">12月11日 14:12:01</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="data-list-item">
+          <div class="data-list-item-header">
+            <div class="header-left">实际扣款：<span>￥0.01</span></div>
+            <div class="header-right"><span>扣款成功</span></div>
+          </div>
+          <div class="data-list-item-details">
+            <div class="detail-left">
+              <div class="detail-img">
+                <img src="./images/circle.png" alt="" />
+              </div>
+              <div class="detail-left-address">
+                <div class="detail-address">机荷东-福民</div>
+                <div class="detail-address">机荷东-福民</div>
+              </div>
+            </div>
+            <div class="detail-right">
+              <div class="detail-right-time">
+                <div class="detail-time">12月11日 14:12:01</div>
+                <div class="detail-time">12月11日 14:12:01</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="data-list-item">
+          <div class="data-list-item-header">
+            <div class="header-left">实际扣款：<span>￥0.01</span></div>
+            <div class="header-right"><span>扣款成功</span></div>
+          </div>
+          <div class="data-list-item-details">
+            <div class="detail-left">
+              <div class="detail-img">
+                <img src="./images/circle.png" alt="" />
+              </div>
+              <div class="detail-left-address">
+                <div class="detail-address">机荷东-福民</div>
+                <div class="detail-address">机荷东-福民</div>
+              </div>
+            </div>
+            <div class="detail-right">
+              <div class="detail-right-time">
+                <div class="detail-time">12月11日 14:12:01</div>
+                <div class="detail-time">12月11日 14:12:01</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 没有绑定时的页面 -->
+      <div class="no-bind">
+        <div class="no-bind-banner">
+          <img src="./images/nobind.png" alt="" />
+        </div>
+        <div class="no-bind-detais">暂未绑定代扣</div>
+        <div class="no-bind-button-brief">点击“立即绑定”按钮绑定支付方式</div>
+        <div class="no-bind-button">
+          <a href="javascript:;" class="u-btn e-full">立即绑定</a>
+        </div>
+      </div>
+
+      <!-- 没有数据时的页面 -->
+      <div class="no-data">
+        <div class="no-data-banner">
+          <img src="./images/nodata.png" alt="" />
+        </div>
+        <div class="no-data-detais">暂无代扣记录</div>
+      </div>
+
+      <!-- 有数据时的页面 -->
+      <!-- 旧页面保存注释 -->
+      <!-- <div class="pay-list">
+        <div class="pay-list-item">
+          <div class="pay-list-item-left">
+            <div class="pay-list-item-title">燕塘收费站</div>
+            <div class="pay-list-item-time">11月21日 10:20</div>
+          </div>
+          <div class="pay-list-item-right"><div>-20.00</div></div>
+        </div>
+        <div class="pay-list-item">
+          <div class="pay-list-item-left">
+            <div class="pay-list-item-title">燕塘收费站</div>
+            <div class="pay-list-item-time">11月21日 10:20</div>
+          </div>
+          <div class="pay-list-item-right"><div>-20.00</div></div>
+        </div>
+        <div class="pay-list-item">
+          <div class="pay-list-item-left">
+            <div class="pay-list-item-title">燕塘收费站</div>
+            <div class="pay-list-item-time">11月21日 10:20</div>
+          </div>
+          <div class="pay-list-item-right"><div>-20.00</div></div>
+        </div>
+        <div class="pay-list-item">
+          <div class="pay-list-item-left">
+            <div class="pay-list-item-title">燕塘收费站</div>
+            <div class="pay-list-item-time">11月21日 10:20</div>
+          </div>
+          <div class="pay-list-item-right"><div>-20.00</div></div>
+        </div>
+      </div> -->
+    </div>
+
+    <script src="./js/libs/jquery.min.js"></script>
+    <!-- picker包 -->
+    <script src="./js/libs/picker.js"></script>
+    <!-- 页面js -->
+    <script src="./js/pages/carDetails.js"></script>
+  </body>
+</html>

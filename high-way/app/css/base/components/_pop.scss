@@ -1,0 +1,85 @@
+//弹窗
+.u-pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 30;
+  text-align: center;
+
+  .pop-content {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%);
+    width:670px;
+    background:rgba(255,255,255,1);
+    border-radius:10px;
+  }
+
+  .pop-message {
+    font-size: 28px;
+    font-weight:400;
+    color:#929292;
+    line-height:44px;
+  }
+
+  .pop-header {
+    height: 88px;
+    font-size:32px;
+    font-weight:400;
+    line-height: 88px;
+    text-align: center;
+    color:#383838;
+
+    @include border-width-1px(0, 0, 1, 0, #eee);
+  }
+
+  .content {
+    padding: 30px 30px 0;
+    min-height: 100px;
+    max-height: 484px;
+    overflow-y: scroll;
+    @include border-width-1px(1, 0, 0, 0, #eee);
+  }
+
+  .pop-footer {
+    padding: 30px 30px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    >a {
+      width:296px;
+      height:80px;
+      line-height: 80px;
+      border-radius:8px;
+      font-size:32px;
+      font-weight:400;
+      color:rgba(89,149,239,1);
+      background-color:rgba(255,255,255,1);
+      @include border-width-1px(1, 1, 1, 1, rgba(89,149,239,1), 8px);
+
+      &:last-child {
+        color: #fff;
+        background-image: linear-gradient(to right, #04BBFA 0%, #547AF4 100%);
+        @include border-width-1px(1, 1, 1, 1, transparent, 8px);
+      }
+    }
+  }
+
+  // 活动规则
+  &.e-rule {
+    .content {
+      text-align: left;
+    }
+
+    .pop-footer {
+      >a {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+.page-help{
+  .help-header{
+  img{
+      width: 750px;
+      height: 265px;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .help-container{
+    display: flex;
+    flex-direction: column;
+    .help-btn-railway{
+      width: 690px;
+      height: 114px;
+      line-height: 114px;
+      border: 1px solid #ccc;
+      font-size: 35px;
+      padding-left: 30px;
+      margin: 0 auto;
+      margin-top: 30px;
+      a:link,a:hover,a:visited{
+        color:#000000;
+      }
+    }
+    .help-btn-direction{
+      width: 690px;
+      height: 114px;
+      line-height: 114px;
+      border: 1px solid #ccc;
+      font-size: 35px;
+      padding-left: 30px;
+      margin: 0 auto;
+      margin-top: 30px;
+      a:link,a:hover,a:visited{
+        color:#000000;
+      }
+    }
+    img{
+      height: 40px;
+      width: 40px;
+      vertical-align: sub;
+      margin-right: 19px;
+      &.help-arrow{
+        transform: rotate(-90deg);
+        float: right;
+        margin: 47px 30px 0 0;
+        height: 20px;
+        width: 20px;
+        opacity: .6; 
+      }
+    }
+  }  
+}

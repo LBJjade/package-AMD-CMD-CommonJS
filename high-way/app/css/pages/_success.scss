@@ -1,0 +1,30 @@
+.page-success {
+  width: 100%;
+  height: 100vh;
+  padding: 30px;
+  .container {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding: 100px 80px;
+    border-radius: 8px;
+    img.success-icon {
+      width: 112px;
+      height: auto;
+    }
+    p.title {
+      font-size: 32px;
+      color: #383838;
+      line-height: 90px;
+    }
+    p.desc {
+      color: #929292;
+      font-size: 28px;
+    }
+    .btn-group {
+      width: 320px;
+      margin: 389px auto 0;
+    }
+  }
+}

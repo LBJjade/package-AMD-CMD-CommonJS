@@ -1,0 +1,373 @@
+.page-car-details {
+  // 车牌样式
+  .list {
+    overflow: hidden;
+    margin-top: 0.2px;
+    padding-left: 0.3px;
+    padding: 30px 30px 0px 30px;
+    li {
+      overflow: hidden;
+      width: 122%;
+      a {
+        display: block;
+        height: 250px;
+        line-height: 3px;
+        -webkit-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+        .plate-number-banner {
+          display: inline-block;
+          width: 690px;
+          height: 220px;
+          background-image: url('../images/car-details-0.png'); // 车牌背景图片可以修改这里
+          background-size: cover;
+          box-shadow: 0px 0px 10px 0px rgba(34, 86, 164, 0.44);
+          border-radius: 8px;
+          padding: 10px 62px;
+          color: rgba(255, 255, 255, 1); //各种图片颜色
+          &.e-type-0 {
+            background-image: url('../images/car-details-0.png'); // 车牌背景图片可以修改这里
+          }
+          &.e-type-1 {
+            color: rgba(0, 0, 0, 1);
+            background-image: url('../images/car-details-1.png'); // 车牌背景图片可以修改这里
+          }
+          &.e-type-2 {
+            background-image: url('../images/car-details-2.png'); // 车牌背景图片可以修改这里
+          }
+          &.e-type-3 {
+            color: rgba(0, 0, 0, 1);
+            background-image: url('../images/car-details-3.png'); // 车牌背景图片可以修改这里
+          }
+          &.e-type-4 {
+            color: rgba(0, 0, 0, 1);
+            background-image: url('../images/car-details-4.png'); // 车牌背景图片可以修改这里
+          }
+          &.e-type-5 {
+            color: rgba(0, 0, 0, 1);
+            background-image: url('../images/car-details-5.png'); // 车牌背景图片可以修改这里                      background-image: linear-gradient(270deg,rgba(245,222,99,1),rgba(244,206,41,1));
+          }
+          .plate-number-num {
+            padding-top: 20px;
+            width: 300px;
+            height: 40px;
+            font-size: 42px;
+            margin-top: 30px;
+            font-family: FZLTHK--GBK1-0;
+            font-weight: 400;
+            margin-left: -40px;
+            img {
+              width: 20px;
+            }
+            i.point {
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              background: rgba(0, 0, 0, 0.2);
+              margin-right: 20px;
+            }
+          }
+          .plate-number-car {
+            padding-top: 30px;
+            font-size: 24px;
+            font-family: FZLTHK--GBK1-0;
+            font-weight: 400;
+            opacity: 0.5;
+          }
+          .plate-number-details {
+            padding-top: 36px;
+            font-size: 24px;
+            font-family: FZLTHK--GBK1-0;
+            font-weight: 400;
+            color: rgba(204, 204, 204, 1);
+            margin-top: 40px;
+          }
+        }
+      }
+      span {
+        display: flex;
+        float: right;
+        position: relative;
+        width: 15%;
+        height: 100%;
+        text-align: center; // background: #E2421B;
+        color: #fff;
+        padding-top: torem(-10px);
+        align-items: center;
+        justify-content: center;
+        .container-div {
+          width: 100px;
+          height: 100px;
+          background: rgba(255, 255, 255, 1);
+          border-radius: 50%;
+          color: rgba(89, 149, 239, 1);
+          img {
+            display: inline-block;
+            width: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+          }
+          .text-div {
+            font-size: 24px;
+            font-family: FZLTHK--GBK1-0;
+            font-weight: 400;
+            color: rgba(89, 149, 239, 1);
+          }
+        }
+      }
+    }
+  } // 时间选择栏目
+  .picker-item {
+    // width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -20px 10px;
+    .picker-item-left {
+      display: flex;
+      width: 40%;
+      font-size: 28px;
+      font-family: FZLTHK--GBK1-0;
+      font-weight: 400;
+      align-items: center;
+      color: rgba(56, 56, 56, 1);
+      input {
+        width: 120px;
+        font-size: 28px;
+        font-family: FZLTHK--GBK1-0;
+        font-weight: 400;
+        background-color: #fafafa;
+      }
+      img {
+        width: 25px;
+      }
+    }
+    .picker-item-right {
+      width: 60%;
+      font-size: 28px;
+      font-family: FZLTHK--GBK1-0;
+      font-weight: 400;
+      color: rgba(146, 146, 146, 1);
+      .float-div {
+        float: right;
+        margin-right: 10px;
+        display: flex;
+        align-items: center;
+        input {
+          font-size: 28px;
+          font-family: FZLTHK--GBK1-0;
+          font-weight: 400;
+          background-color: transparent;
+          width: 180px;
+          margin-right: -170px;
+          opacity: 0;
+        }
+        .image-div {
+          // margin-left: -10px;
+          width: 20px;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          pointer-events: none;
+          img {
+            width: 28px;
+            clear: both;
+          }
+        }
+        .text-div {
+          display: flex;
+          align-items: center;
+          height: 100%;
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+
+  // 新数据列表
+  .data-list {
+    width: 100%;
+    padding: 15px 20px;
+    .data-list-item {
+      margin-bottom: 30px;
+      height: 222px; // width: 690px;
+      .data-list-item-header {
+        padding: 22px 20px;
+        background: rgba(247, 252, 255, 1);
+        border-radius: 10px 10rem 0px 0px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 70px;
+        .header-left {
+          width: 50%;
+          font-size: 28px;
+          font-family: PingFangSC-Regular;
+          font-weight: 400;
+          color: rgba(56, 56, 56, 1);
+          span {
+            color: #5995ef;
+          }
+        }
+        .header-right {
+          width: 50%;
+          font-size: 24px;
+          font-family: PingFangSC-Regular;
+          font-weight: 400;
+          color: rgba(153, 153, 153, 1);
+          display: flex;
+          justify-content: flex-end;
+          span {
+            font-size: 24px;
+            display: block;
+            float: right;
+          }
+        }
+      }
+      .data-list-item-details {
+        padding: 30px 20px;
+        width: 100%;
+        background-color: #ffffff;
+        display: flex;
+        .detail-left {
+          display: flex;
+          align-items: center;
+          width: 50%;
+          .detail-img {
+            img {
+              width: 24px;
+            }
+          }
+          .detail-left-address {
+            margin-left: 5px;
+            :first-child {
+              margin-bottom: 24px;
+              margin-top: -8px;
+            }
+            .detail-address {
+              font-size: 28px;
+              font-family: PingFangSC-Regular;
+              font-weight: 400;
+              color: rgba(56, 56, 56, 1);
+            }
+          }
+        }
+        .detail-right {
+          width: 50%;
+          .detail-right-time {
+            float: right;
+            :first-child {
+              margin-bottom: 30px;
+              margin-top: -5px;
+            }
+            .detail-time {
+              font-size: 24px;
+              font-family: PingFangSC-Regular;
+              font-weight: 400;
+              color: rgba(56, 56, 56, 1);
+            }
+          }
+        }
+      }
+    }
+  } // 没有绑定页面样式
+  .no-bind {
+    width: 100%;
+    text-align: center;
+    .no-bind-banner {
+      width: 100%;
+      height: 250px;
+      text-align: center;
+      margin: 100px 0px 40px 0px;
+      img {
+        width: 400px;
+        height: 250px;
+      }
+    }
+    .no-bind-detais {
+      font-size: 32px;
+      font-family: FZLTHK--GBK1-0;
+      font-weight: 400;
+      color: rgba(56, 56, 56, 1);
+      margin-bottom: 20px;
+    }
+    .no-bind-button-brief {
+      font-size: 28px;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      color: rgba(146, 146, 146, 1);
+      margin-bottom: 80px;
+    }
+    .no-bind-button {
+      width: 100%;
+      text-align: center;
+      a {
+        display: inline-block;
+        width: 320px;
+        height: 80px;
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+  } // 没有数据页面样式
+  .no-data {
+    width: 100%;
+    text-align: center;
+    .no-data-banner {
+      width: 100%;
+      height: 250px;
+      text-align: center;
+      margin: 100px 0px 40px 0px;
+      img {
+        width: 400px;
+        height: 250px;
+      }
+    }
+    .no-data-detais {
+      font-size: 32px;
+      font-family: FZLTHK--GBK1-0;
+      font-weight: 400;
+      color: rgba(146, 146, 146, 1);
+      margin-bottom: 20px;
+    }
+  } // 有数据页面样式
+  .pay-list {
+    border-top: 1px solid rgba(225, 225, 225, 1);
+    .pay-list-item {
+      margin: 0px 30px;
+      height: 128px;
+      border-bottom: 1px solid rgba(225, 225, 225, 1);
+      display: flex;
+      align-items: center;
+      .pay-list-item-left {
+        width: 50%;
+        .pay-list-item-title {
+          width: 200px;
+          font-size: 28px;
+          font-family: FZLTHK--GBK1-0;
+          font-weight: 400;
+          color: rgba(56, 56, 56, 1);
+          margin-bottom: 10px;
+        }
+        .pay-list-item-time {
+          width: 200px;
+          font-size: 24px;
+          font-family: FZLTHK--GBK1-0;
+          font-weight: 400;
+          color: rgba(146, 146, 146, 1);
+        }
+      }
+      .pay-list-item-right {
+        width: 50%;
+        div {
+          float: right;
+          margin-right: 30px;
+        }
+      }
+    }
+  } // swiper 用到的样式
+  .swipeleft {
+    transform: translateX(-15%);
+    -webkit-transform: translateX(-15%);
+  }
+}

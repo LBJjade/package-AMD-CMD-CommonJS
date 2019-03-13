@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no, shrink-to-fit=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta content="xxx,xxx,xxx" name="keywords">
+    <meta content="" name="description">
+    <meta name="front-end technicist" content="Lin">
+    <link rel="shortcut icon" href="http://www.cmbchina.com/cmb.ico" type="images/x-icon">
+    <title>高速车牌付</title>
+    <script>
+      (function (a, c) {
+        var d = a.documentElement, e = function () {
+          var b = a.documentElement.getBoundingClientRect().width || d.clientWidth; b && (d.style.fontSize = 750 <= b ? '40px' : b / 750 * 40 + 'px')
+        };
+        a.addEventListener && (c.addEventListener('orientationchange' in c ? 'orientationchange' : 'resize', e, !1),
+        a.addEventListener('DOMContentLoaded', e, !1))
+      })(document, window);
+      </script>
+      <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body>
+  <!--如果需要显示或者隐藏元素，请添加或者删除类f-hide -->
+  <div class="wrapper page-index" id="wrapper">
+    <!-- 省时省心广告模块 -->
+    <div class="ad">
+      <div class="left_ad">
+        <p>省时</p>
+        <p>无需线下排队，线上快速办理</p>
+      </div>
+      <div class="right_ad">
+        <p>省心</p>
+        <p>免除现金缴费，还卡自动扣费</p>
+      </div>
+    </div>
+    <!-- 选择车辆模块 -->
+    <div class="addcar">
+      <p class="_title">
+        <i id="icon-text"></i>请选择车辆
+        <a class="help" href="###">
+          <img src="./images/icon_help.png" alt="">使用帮助
+        </a>
+      </p>
+      <!-- 未添加车辆时只显示添加车辆按钮 -->
+      <div class="_btn f-hide">
+        <p>
+          <img src="./images/icon_addcar.png" alt="">添加车辆
+        </p>
+        <p>填写信息开通车牌付</p>
+      </div>
+      <!-- 添加车辆后显示选择车辆模块和添加车辆按钮 -->
+      <div class="_select">
+        <!-- 蓝牌 -->
+        <div class="_card e-type-0">
+          <img src="./images/card_shade.png" alt="">
+          <p class="carNum">
+            <i></i>粤S88888
+            <span class="carStatus">已绑定一卡通代扣</span>
+          </p>
+        </div>
+        <!-- 黄牌 -->
+        <div class="_card e-type-1">
+          <img src="./images/card_shade.png" alt="">
+          <p class="carNum">
+            <i></i>粤S88888
+            <span class="carStatus">代扣服务审核中</span>
+          </p>
+        </div>
+        <!-- 黑牌 -->
+        <div class="_card e-type-2">
+          <img src="./images/card_shade.png" alt="">
+          <p class="carNum">
+            <i></i>粤S88888
+            <span class="carStatus">暂未绑定代扣</span>
+          </p>
+        </div>
+        <!-- 白牌 -->
+        <div class="_card e-type-3">
+          <img src="./images/card_shade.png" alt="">
+          <p class="carNum">
+            <i></i>粤S88888
+            <span class="carStatus">暂未绑定代扣</span>
+          </p>
+        </div>
+        <!-- 绿牌 -->
+        <div class="_card e-type-4">
+          <img src="./images/card_shade.png" alt="">
+          <p class="carNum">
+            <i></i>粤S88888
+            <span class="carStatus">暂未绑定代扣</span>
+          </p>
+        </div>
+        <!-- 黄绿牌 -->
+        <div class="_card e-type-5">
+          <img src="./images/card_shade.png" alt="">
+          <p class="carNum">
+            <i></i>粤S88888
+            <span class="carStatus">暂未绑定代扣</span>
+          </p>
+        </div>
+      </div>
+      <!-- 添加车辆后显示添加车辆按钮 -->
+      <div class="footer">
+        <a href="javascript:;" class="u-btn e-border e-full"><img src="./images/add_small.png" alt="">添加车辆</a>
+      </div>
+    </div>
+  </div>
+  <script src="./js/pages/index.js"></script>
+</body>
+
+</html>
