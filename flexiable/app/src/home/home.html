@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/app.scss">
+    <style>
+        .header{
+            width: 100%;
+            height: 2rem;
+            font-size: 1rem;
+            background-color: aqua;
+        }
+        .nav{
+            width: 100%;
+            height: 2rem;
+            font-size: 1rem;
+            background-color: blueviolet;
+        }
+        .aside{
+            width: 100%;
+            height: 2rem;
+            font-size: 1rem;
+            background-color: brown;
+        }
+        .footer{
+            width: 100%;
+            height: 2rem;
+            font-size: 1rem;
+            background-color:chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">header</header>
+    <nav class="nav">nav</nav>
+    <aside class="aside">aside</aside>
+    <footer class="footer">footer</footer>
+    <div class="u-input-inner">
+      <label class="u-label">使用性质</label>
+      <input class="u-input" type="text" placeholder="请输入使用性质"/>
+    </div>
+</body>
+<script>
+(function flexible (window, document) {
+  var docEl = document.documentElement
+  var dpr = window.devicePixelRatio || 1
+
+  // adjust body font size
+  function setBodyFontSize () {
+    if (document.body) {
+      document.body.style.fontSize = (12 * dpr) + 'px'
+    }
+    else {
+      document.addEventListener('DOMContentLoaded', setBodyFontSize)
+    }
+  }
+  setBodyFontSize();
+
+  // set 1rem = viewWidth / 10
+  function setRemUnit () {
+    var rem = docEl.clientWidth / 10
+    docEl.style.fontSize = rem + 'px'
+  }
+
+  // add compatible
+  let resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize'
+  setRemUnit()
+
+  // reset rem unit on page resize
+  window.addEventListener(resizeEvt, setRemUnit, false)
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      setRemUnit()
+    }
+  }, false)
+
+  // detect 0.5px supports
+  if (dpr >= 2) {
+    var fakeBody = document.createElement('body')
+    var testElement = document.createElement('div')
+    testElement.style.border = '.5px solid transparent'
+    fakeBody.appendChild(testElement)
+    docEl.appendChild(fakeBody)
+    if (testElement.offsetHeight === 1) {
+      docEl.classList.add('hairlines')
+    }
+    docEl.removeChild(fakeBody)
+  }
+}(window, document))
+</script>
+</html>

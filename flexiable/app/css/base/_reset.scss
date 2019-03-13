@@ -1,0 +1,46 @@
+/*
+ * 层级规范
+toast 50
+loading 40
+dialog 30
+ *
+*/
+
+@import './mixins.scss';
+
+/*css reset*/
+blockquote,body,button,code,dd,div,dl,dt,fieldset,figure,form,h1,h2,h3,h4,h5,h6,input,legend,li,ol,p,pre,td,textarea,th,ul{padding:0;margin:0}
+article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}
+li,ol,ul{list-style:none}
+a{text-decoration:none;cursor: pointer;}
+table{border-collapse:collapse;border-spacing:0}
+body{-webkit-overflow-scrolling:touch;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none}
+input {-webkit-appearance: none;border: none;outline:none;}
+:focus{outline:0}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,0,0,0); -webkit-tap-highlight-color: transparent;cursor:pointer;}
+body,html{-webkit-user-select:none;user-select:none;font-family:PingFang-SC-Regular,Helvetica Neue,Helvetica,microsoft yahei,sans-serif}
+html{-webkit-text-size-adjust:none;font-size:50px}
+video {
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.f-left{float:left}
+.f-right{float:right}
+.f-clearfix{zoom:1;clear:both}
+.f-clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}
+.f-hide{display:none}
+.f-show{display:block}
+img{width: 100%;border:none}
+.u-hardline{position:relative}
+.u-hardline::before{content:'';position:absolute;top:0;left:0;width:200%;height:200%;transform-origin: 0 0;transform:scale(.5);border:1px solid transparent;pointer-events:none;box-sizing:border-box}
+
+
+
