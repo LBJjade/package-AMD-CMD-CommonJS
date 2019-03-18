@@ -47,3 +47,31 @@ function foo(a) {
 
 foo(1);
 
+
+
+// 
+var aminals = function(){
+
+}
+aminals.prototype = {
+  definedAnimal: function(type){
+    var animal
+    switch(type){
+      case 'dog':
+      animal = new dog()
+      break
+      case 'cat':
+      animal = new cat()
+    }
+  },
+}
+
+var dog = function(){
+}
+
+dog.prototype = {
+  
+}
+
+var cat = function(){
+}
