@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
-<script>
+  </head>
+  <body></body>
+  <script>
+    // 解构
+    let [a, b, c] = [1, 2, 3];
+    let [foo, [[bar], baz]] = [1, [[2], 3]];
+    let [, , third] = ['foo', 'bar', 'baz'];
+    let [x, , y] = [1, 2, 3];
+    let [head, ...tail] = [1, 2, 3, 4];
+    let [x, y, ...z] = ['a'];
+    const [a, b, c, d, e] = 'hello';
 
-</script>
+    let arrayLike = {
+      '0': 'a',
+      '1': 'b',
+      '2': 'c',
+      length: 3,
+    };
+
+    // ES5的写法
+    var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
+
+    // ES6的写法
+    let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+
+    // NodeList对象
+    let ps = document.querySelectorAll('p');
+    Array.from(ps).filter(p => {
+      return p.textContent.length > 100;
+    });
+
+    // arguments对象
+    function foo() {
+      var args = Array.from(arguments);
+      // ...
+    }
+
+    Array.from('hello');
+    // ['h', 'e', 'l', 'l', 'o']
+
+    let namesSet = new Set(['a', 'b']);
+    Array.from(namesSet); // ['a', 'b']
+
+    
+  </script>
 </html>
