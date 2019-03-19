@@ -79,6 +79,22 @@
     console.log('=======寄生式继承=======');
     console.log(typeof subObject, 'typeof subObject');
     console.log(typeof supT1, 'typeof supT1');
-    console.log(supT1.name)
+    console.log(supT1.name);
+
+    // 寄生组合式继承（常用）
+    function content3(obj) {
+      function F() {}
+      F.prototype = obj;
+      return new F();
+    }
+    var con = content3(Person.prototype);
+    function Sub3() {
+      Person.call(this);
+    }
+    Sub3.prototype = con;
+    con.constructor = Sub3();
+    var su3 = new Sub3();
+    console.log('=======寄生组合式继承=======');
+    console.log(su3.age)
   </script>
 </html>
