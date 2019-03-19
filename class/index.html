@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+  </body>
+  <script>
+    // 继承
+    function Person(name) {
+      this.name = name;
+      this.sum = function() {
+        alert(this.name);
+      };
+    }
+    Person.prototype.age = 10;
+
+    // 原项链继承
+    function Per() {
+      this.name = 'lbj';
+    }
+    Per.prototype = new Person();
+    var per1 = new Per();
+    console.log('=======原项链继承=======');
+    console.log(per1.age, 'per1.age');
+    console.log(per1 instanceof Person, 'per1 instanceof Person');
+
+    // 构造函数
+    function Con() {
+      Person.call(this, 'jar');
+      this.age = 12;
+    }
+    var con1 = new Con();
+    console.log('=======构造函数=======');
+    console.log(con1.name, 'con1.name');
+    console.log(con1.age, 'con1.age');
+    console.log(con1 instanceof Person, 'con1 instanceof Person');
+
+    // 组合继承（组合原型链继承和借用构造函数继承）（常用）
+    function SubType(name) {
+      Person.call(this, name);
+    }
+    SubType.prototype = new Person();
+    var sub = new SubType('gar');
+    console.log('=======构造函数=======');
+    console.log(sub.name, 'sub.name');
+    console.log(sub.age, 'sub.age');
+    console.log(sub instanceof Person, 'sub instanceof Person');
+
+    // 原型式继承
+    function content(obj) {
+      function F() {}
+      F.prototype = obj;
+      return new F();
+    }
+    var sup = new Person();
+    var sup1 = content(sup);
+    console.log('=======原型式继承=======');
+    // console.log(sup1.name);
+    console.log(sup1.age);
+
+    // 寄生式继承
+    function content2(obj) {
+      function F() {}
+      F.prototype = obj;
+      return new F();
+    }
+    var supT = new Person();
+    function subObject(obj) {
+      var sub = content2(supT);
+      sub.name = 'gar2';
+      return sub;
+    }
+    var supT1 = subObject(supT);
+    console.log('=======寄生式继承=======');
+    console.log(typeof subObject, 'typeof subObject');
+    console.log(typeof supT1, 'typeof supT1');
+    console.log(supT1.name)
+  </script>
+</html>
