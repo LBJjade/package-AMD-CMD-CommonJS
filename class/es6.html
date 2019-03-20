@@ -48,6 +48,13 @@
     let namesSet = new Set(['a', 'b']);
     Array.from(namesSet); // ['a', 'b']
 
+    Array.of(3, 11, 8); // [3,11,8]
+    Array.of(3); // [3]
+    Array.of(3).length; // 1
+
     
+    [1, 5, 10, 15].find(function(value, index, arr) {
+      return value > 9;
+    }); // 10
   </script>
 </html>
