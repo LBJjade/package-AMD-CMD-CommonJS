@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      div {
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        left: 0;
+      }
+      #test {
+        background-color: pink;
+        top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="test">元素</div>
+    <button id="btn">开始运动</button>
+    <button id="reset">还原</button>
+  </body>
+  <script>
+    reset.onclick = function() {
+      history.go();
+    };
+    btn.onclick = function() {
+      move(test, 'left', 100, 20, function() {
+        move(test, 'width', 300, 10);
+      });
+    };
+    function getCSS(obj, style) {
+      if (window.getComputedStyle) {
+        return getComputedStyle(obj)[style];
+      }
+      return obj.currentStyle[style];
+    }
+    function move(obj, attr, target, speed, fn) {
+      if (!obj.timers) {
+        obj.timers = {};
+      }
+      clearInterval(obj.timers[attr]);
+      var cur;
+      obj.timers[attr] = setInterval(function() {
+        if (attr == 'opacity') {
+          cur = Math.round(getCSS(obj, attr) * 100);
+          if ((cur - target * 100) * speed < 0) {
+            obj.style.opacity = (cur + speed * 100) / 100;
+            obj.style.filter = 'alpha(opacity=' + (cur + speed * 100) + ')';
+          } else {
+            obj.style.opacity = target;
+            obj.filter = 'alpha(opacity=' + target + ')';
+            clearInterval(obj.timers[attr]);
+            obj.timers[attr] = 0;
+            fn && fn.call(obj);
+          }
+        } else {
+          cur = parseInt(getCSS(obj, attr));
+          if ((cur - target) * speed < 0) {
+            obj.style[attr] = cur + speed + 'px';
+          } else {
+            obj.style[attr] = target + 'px';
+            clearInterval(obj.timers[attr]);
+            obj.timers[attr] = 0;
+            fn && fn.call(obj);
+          }
+        }
+      }, 30);
+    }
+  </script>
+</html>

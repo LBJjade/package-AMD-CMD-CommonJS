@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      #test {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        left: -100px;
+      }
+      #test-in {
+        width: 30px;
+        height: 60px;
+        background-color: orange;
+        margin-left: 100px;
+        position: relative;
+        top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="test">
+      <div id="test-in">分享到</div>
+    </div>
+  </body>
+  <!-- <script>
+    var testIn = document.getElementById('test-in');
+    var timer;
+    test.onmouseover = function() {
+      move(test, 0, 10);
+    };
+    test.onmouseout = function() {
+      move(test, -100, -10);
+    };
+    function move(obj, target, speed) {
+      clearInterval(timer);
+      timer = setInterval(function() {
+        if ((obj.offsetLeft - target) * speed < 0) {
+          obj.style.left = obj.offsetLeft + speed + 'px';
+        } else {
+          obj.style.left = target + 'px';
+          clearInterval(timer);
+          timer = 0;
+        }
+      }, 16);
+    }
+  </script> -->
+
+  <!-- <script>
+    var testIn = document.getElementById('test-in');
+    var timer1, timer2;
+    var onOff = false;
+    test.onmouseover = function() {
+      if (!onOff) {
+        clearInterval(timer1);
+        timer1 = setInterval(function() {
+          if (!onOff) {
+            if (test.offsetLeft < 0) {
+              test.style.left = test.offsetLeft + 10 + 'px';
+            } else {
+              test.style.left = '0';
+              clearInterval(timer1);
+              timer1 = 0;
+            }
+          } else {
+            clearInterval(timer1);
+          }
+        }, 30);
+      }
+    };
+    test.onmouseout = function(e) {
+      e = e || event;
+      var target = e.target || e.srcElement;
+      if (target === test) {
+        //当触发父元素移出事件时，开启开关
+        onOff = true;
+        clearInterval(timer2);
+        timer2 = setInterval(function() {
+          if (test.offsetLeft > -100) {
+            test.style.left = test.offsetLeft - 10 + 'px';
+          } else {
+            test.style.left = '-100px';
+            clearInterval(timer2);
+            timer2 = 0;
+            //当运动结束后，关闭开关
+            onOff = false;
+          }
+        }, 30);
+      }
+    };
+  </script> -->
+  <!-- 
+  <script>
+    var testIn = document.getElementById('test-in');
+    var timer;
+    test.onmouseover = function() {
+      move(test, 0, 10);
+    };
+    test.onmouseout = function() {
+      move(test, -100, -10);
+    };
+    function move(obj, target, speed) {
+      clearInterval(timer);
+      timer = setInterval(function() {
+        if ((obj.offsetLeft - target) * speed < 0) {
+          obj.style.left = obj.offsetLeft + speed + 'px';
+        } else {
+          obj.style.left = target + 'px';
+          clearInterval(timer);
+          timer = 0;
+        }
+      }, 16);
+    }
+  </script> -->
+
+  <script>
+    test.onmouseover = function() {
+      move(test, 'opacity', 0.1, -0.05);
+      move(test, 'left', 0, 10);
+    };
+    test.onmouseout = function() {
+      move(test, 'opacity', 1, 0.05);
+      move(test, 'left', -100, -10);
+    };
+    function getCSS(obj, style) {
+      if (window.getComputedStyle) {
+        return getComputedStyle(obj)[style];
+      }
+      return obj.currentStyle[style];
+    }
+    function move(obj, attr, target, speed) {
+      if (!obj.timers) {
+        obj.timers = {};
+      }
+      clearInterval(obj.timers[attr]);
+      var cur;
+      obj.timers[attr] = setInterval(function() {
+        if (attr == 'opacity') {
+          cur = Math.round(getCSS(obj, attr) * 100);
+          if ((cur - target * 100) * speed < 0) {
+            obj.style.opacity = (cur + speed * 100) / 100;
+            obj.style.filter = 'alpha(opacity=' + (cur + speed * 100) + ')';
+          } else {
+            obj.style.opacity = target;
+            obj.filter = 'alpha(opacity=' + target + ')';
+            clearInterval(obj.timers[attr]);
+            obj.timers[attr] = 0;
+          }
+        } else {
+          cur = parseInt(getCSS(obj, attr));
+          if ((cur - target) * speed < 0) {
+            obj.style[attr] = cur + speed + 'px';
+          } else {
+            obj.style[attr] = target + 'px';
+            clearInterval(obj.timers[attr]);
+            obj.timers[attr] = 0;
+          }
+        }
+      }, 30);
+    }
+  </script>
+</html>

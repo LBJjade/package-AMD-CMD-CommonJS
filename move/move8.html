@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+div{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    background-color:lightblue;
+}
+div:nth-child(odd){
+    background-color:pink;
+}
+</style>
+</head>
+<body>
+<script src="http://files.cnblogs.com/files/xiaohuochai/move.js"></script>
+<script>
+var str = '';
+var len = 10;
+var timer;
+var num = 0;
+for(var i = 0; i < len; i++){
+    str+= '<div style="left:'+60*i+'px;"></div>';
+}
+document.body.innerHTML = str;
+document.onclick = function(){
+    var aDiv = document.getElementsByTagName('div');
+    if(timer) return;
+    timer = setInterval(function(){
+        move(aDiv[num++],'top', 200,10,function(){
+            var _this = this;
+            setTimeout(function(){
+                move(_this,'top', 0,10);
+            },1000)
+        });
+        if(num == len){
+            clearInterval(timer);
+            num = 0;
+            setTimeout(function(){
+                timer = 0;
+            },2000);
+        }
+    },100);
+}
+</script>    
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">开始运动</button>
+    <button id="reset">还原</button>
+    <div
+      id="test"
+      style="height: 100px;width: 100px;background-color: pink;position:absolute;left:0;"
+    ></div>
+  </body>
+  <script>
+    var timer;
+    reset.onclick = function() {
+      history.go();
+    };
+    btn.onclick = function() {
+      timer = setInterval(function() {
+        if (test.offsetLeft < 500) {
+          test.style.left = test.offsetLeft + 10 + 'px';
+        } else {
+          test.style.left = '500px';
+          clearInterval(timer);
+        }
+      }, 30);
+    };
+  </script>
+</html>
