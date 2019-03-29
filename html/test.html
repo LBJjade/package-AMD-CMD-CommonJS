@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="gb2312" />
+<title>瀑布流练习</title>
+<link type="text/css" rel="stylesheet" href="./css/reset.css" />
+
+<style>
+ul.wrap{
+    width:1200px;
+    margin:0 auto;
+    position:relative; /* 相对定位 */
+}
+ul.wrap li{
+    width:400px;
+    float:left;
+    position:absolute; /* 绝对定位 */
+}
+ul.wrap li img{
+    /* 计算好长度 */
+    width:364px;
+    border:2px solid #bdbdbd;
+    padding:10px;
+    margin:4px;
+}
+</style>
+
+<script type="text/javascript">
+
+window.onload = function(){
+    pubuliu("ulwrap",3,400);
+};
+
+//实现ul下的li瀑布流
+//cols 表示一行几列，liWidth 表示一列的宽度
+function pubuliu(ulId,cols,liWidth){
+    var wrap = document.getElementById(ulId);
+    var lis = wrap.getElementsByTagName("li");
+    
+    var li_h = [];
+    for(var i=0; i<lis.length; i++){
+        if(i < cols){
+            li_h[i] = lis[i].scrollHeight;
+            //定位元素
+            lis[i].style.left = i * liWidth + "px";
+            lis[i].style.top = "0px";
+        }else{
+            //获取数组最小值
+            var min_liH = Math.min.apply( Math, li_h );
+            var key = getKeyByValue(li_h,min_liH);
+            //重定义最小高度
+            li_h[key] = min_liH + lis[i].scrollHeight;
+            
+            //定位元素
+            lis[i].style.left = key * liWidth + "px";
+            lis[i].style.top = min_liH + "px";
+        }
+    }
+}
+
+//根据数组中的值获取索引
+function getKeyByValue(arr,value){
+    for(var i=0; i<arr.length; i++){
+        if(arr[i] == value){
+            return i;
+        }
+    }
+}
+</script>
+</head>
+
+<body>
+    <ul class="wrap clearfix" id="ulwrap">
+        <li>
+            <img src="./images/1.jpg" />
+        </li>
+        <li>
+            <img src="./images/2.jpg" />
+        </li>
+        <li>
+            <img src="./images/3.jpg" />
+        </li>
+        <li>
+            <img src="./images/4.jpg" />
+        </li>
+        <li>
+            <img src="./images/5.jpg" />
+        </li>
+        <li>
+            <img src="./images/6.jpg" />
+        </li>
+        <li>
+            <img src="./images/7.jpg" />
+        </li>
+        <li>
+            <img src="./images/8.jpg" />
+        </li>
+        <li>
+            <img src="./images/9.jpg" />
+        </li>
+        <li>
+            <img src="./images/10.jpg" />
+        </li>
+    </ul>
+</body>
+</html>
