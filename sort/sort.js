@@ -1,0 +1,177 @@
+// 冒泡
+function swap(arr, n, m) {
+    [arr[n], arr[m]] = [arr[m], arr[n]]
+}
+
+function bubbleSort(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) swap(arr, j, j + 1)
+        }
+    }
+    return arr
+}
+
+// 优化1
+function bubbleSort1(arr) {
+    for (let i = 0; i < arr.length - 1; i++) {
+        // 外层循环初始值为 false，没有发生交换
+        let has_exchanged = false
+        for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr, j, j + 1)
+                has_exchanged = true
+            }
+        }
+        // 内层循环结束判断一下是否发生了交换
+        if (!has_exchanged) break
+    }
+    return arr
+}
+
+// 优化2
+function bubbleSort2(arr) {
+    // 遍历结束位置的初始值为数组尾，并逐渐向数组头部逼近
+    let high = arr.length - 1
+    while (high > 0) {
+        // 本次内层遍历发生交换的位置的初始值
+        let position = 0
+        for (let j = 0; j < high; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr, j, j + 1)
+                // 如果发生了交换，更新 position
+                position = j
+            }
+        }
+        // 下次遍历只需要到 position 的位置即可
+        high = position
+    }
+    return arr
+}
+
+// 优化3
+function bubbleSort3(arr) {
+    let low = 0,
+        high = arr.length - 1
+    while (low < high) {
+        // 正向遍历找最大
+        for (let i = low; i <= high; i++)
+            if (arr[i] > arr[i + 1]) swap(arr, i, i + 1)
+        high--
+        // 反向遍历找最小
+        for (let j = high; j >= low; j--)
+            if (arr[j] < arr[j - 1]) swap(arr, j, j - 1)
+        low++
+    }
+    return arr
+}
+
+// 选择排序
+function selectionSort(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let min_index = i
+        // 遍历后面的部分，寻找更小值
+        for (let j = i + 1; j < arr.length; j++) {
+            // 如果有，更新min_index
+            if (arr[j] < arr[min_index]) min_index = j
+        }
+        swap(arr, i, min_index)
+    }
+    return arr
+}
+
+// 堆排序
+// 排序
+function heapSort(arr) {
+    var arr_length = arr.length
+    if (arr_length <= 1) return arr
+    // 1. 建最大堆
+    // 遍历一半元素就够了
+    // 必须从中点开始向左遍历，这样才能保证把最大的元素移动到根节点
+    for (var middle = Math.floor(arr_length / 2); middle >= 0; middle--) maxHeapify(arr, middle, arr_length)
+    // 2. 排序，遍历所有元素
+    for (var j = arr_length; j >= 1; j--) {
+        // 2.1. 把最大的根元素与最后一个元素交换
+        swap(arr, 0, j - 1)
+        // 2.2. 剩余的元素继续建最大堆
+        maxHeapify(arr, 0, j - 2)
+    }
+    return arr
+}
+// 建最大堆
+function maxHeapify(arr, middle_index, length) {
+    // 1. 假设父节点位置的值最大
+    var largest_index = middle_index
+    // 2. 计算左右节点位置
+    var left_index = 2 * middle_index + 1,
+        right_index = 2 * middle_index + 2
+    // 3. 判断父节点是否最大
+    // 如果没有超出数组长度，并且子节点比父节点大，那么修改最大节点的索引
+    // 左边更大
+    if (left_index <= length && arr[left_index] > arr[largest_index]) largest_index = left_index
+    // 右边更大
+    if (right_index <= length && arr[right_index] > arr[largest_index]) largest_index = right_index
+    // 4. 如果 largest_index 发生了更新，那么交换父子位置，递归计算
+    if (largest_index !== middle_index) {
+        swap(arr, middle_index, largest_index)
+        // 因为这时一个较大的元素提到了前面，一个较小的元素移到了后面
+        // 小元素的新位置之后可能还有比它更大的，需要递归
+        maxHeapify(arr, largest_index, length)
+    }
+}
+
+
+// 插入排序
+// 按照第一种理解方式的实现，即一般的实现
+function insertionSort(arr) {
+    for (let index = 1; index < arr.length; index++) {
+        // 取出一个未排序元素
+        let current_ele = arr[index]
+        // 已排序元素的最后一个的位置
+        let ordered_index = index - 1
+        // 前面的元素更大，并且还没遍历完
+        while (arr[ordered_index] >= current_ele && ordered_index >= 0) {
+            // 使用前面的值覆盖当前的值
+            arr[ordered_index + 1] = arr[ordered_index]
+            // 向前移动一个位置
+            ordered_index--
+        }
+        // 遍历完成，前面的元素都比当前元素小，把未排序元素赋值进去
+        arr[ordered_index + 1] = current_ele
+    }
+    return arr
+}
+// 按照第二种理解方式的实现
+function insertionSort(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        // 对前面的已排序数组和新选出来的元素执行一趟冒泡排序
+        for (let j = i + 1; j >= 0; j--)
+            if (arr[j] < arr[j - 1]) swap(arr, j, j - 1)
+    }
+    return arr
+}
+
+// 希尔排序
+function shellSort(arr) {
+    // 外层循环逐步缩小增量 gap 的值
+    for (let gap = 5; gap > 0; gap = Math.floor(gap / 2)) {
+        // 中层和内层是插入排序
+        // 普通插入排序从第1个元素开始，这里分组了，要看每一组的第1个元素
+        // 共分成了 gap 组，第一组的第1个元素索引为 gap
+        // 第一组元素索引为 0, 0+gap, 0+2*gap，...，第二组元素索引为 1, 1+gap, 2+2*gap，...
+        for (let i = gap; i < arr.length; i++) {
+            let current_ele = arr[i]
+            // 普通插入排序时，j 每次减少1，即与前面的每个元素比较
+            // 这里 j 每次减少 gap，只会与当前元素相隔 n*(gap-1) 的元素比较，也就是只会与同组的元素比较
+            let ordered_index = i - gap
+            while (ordered_index >= 0 && arr[ordered_index] > current_ele) {
+                arr[ordered_index + gap] = arr[ordered_index]
+                ordered_index -= gap
+            }
+            arr[ordered_index + gap] = current_ele
+        }
+    }
+    return arr
+}
+
+// 
