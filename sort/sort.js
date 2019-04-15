@@ -196,3 +196,31 @@ function quickSort(arr) {
   // 递归并连接
   return quickSort(left).concat(middle, quickSort(right));
 }
+
+// 归并排序
+
+// 分割
+function mergeSort2(arr) {
+  // 如果只剩一个元素，分割结束
+  if (arr.length < 2) return arr;
+  // 否则继续分成两部分
+  let middle_index = Math.floor(arr.length / 2),
+    left = arr.slice(0, middle_index),
+    right = arr.slice(middle_index);
+  return merge2(mergeSort2(left), mergeSort2(right));
+}
+// 合并
+function merge2(left, right) {
+  let result = [];
+  // 当左右两个数组都还没有取完的时候，比较大小然后合并
+  while (left.length && right.length) {
+    if (left[0] < right[0]) result.push(left.shift());
+    else result.push(right.shift());
+  }
+  // 其中一个数组空了，另一个还剩下一些元素
+  // 因为是已经排序过的，所以直接concat就好了
+  // 注意 concat 不改变原数组
+  if (left.length) result = result.concat(left);
+  if (right.length) result = result.concat(right);
+  return result;
+}
