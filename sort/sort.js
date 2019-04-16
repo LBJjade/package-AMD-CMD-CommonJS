@@ -223,4 +223,21 @@ function merge2(left, right) {
   if (left.length) result = result.concat(left);
   if (right.length) result = result.concat(right);
   return result;
+}repo
+
+// 计数排序
+function countingSort(array) {
+  let count_arr = [], result_arr = []
+  // 统计出现次数
+  for (let i = 0; i < array.length; i++) {
+    count_arr[array[i]] = count_arr[array[i]] ? count_arr[array[i]] + 1 : 1
+  }
+  // 遍历统计数组，放入结果数组
+  for (let i = 0; i < count_arr.length; i++) {
+    while (count_arr[i] > 0) {
+      result_arr.push(i)
+      count_arr[i]--
+    }
+  }
+  return result_arr
 }
