@@ -223,21 +223,75 @@ function merge2(left, right) {
   if (left.length) result = result.concat(left);
   if (right.length) result = result.concat(right);
   return result;
-}repo
+}
+repo;
 
 // 计数排序
 function countingSort(array) {
-  let count_arr = [], result_arr = []
+  let count_arr = [],
+    result_arr = [];
   // 统计出现次数
   for (let i = 0; i < array.length; i++) {
-    count_arr[array[i]] = count_arr[array[i]] ? count_arr[array[i]] + 1 : 1
+    count_arr[array[i]] = count_arr[array[i]] ? count_arr[array[i]] + 1 : 1;
   }
   // 遍历统计数组，放入结果数组
   for (let i = 0; i < count_arr.length; i++) {
     while (count_arr[i] > 0) {
-      result_arr.push(i)
-      count_arr[i]--
+      result_arr.push(i);
+      count_arr[i]--;
     }
   }
-  return result_arr
+  return result_arr;
+}
+
+// LSD
+function radixSortLSD(arr) {
+  // 找出最大元素
+  let max_num = Math.max(...arr),
+    // 获取其位数
+    max_len = getLengthOfNum(max_num);
+  console.log(`最大元素是 ${max_num}，长度 ${max_len}`);
+  // 外层遍历位数，内层遍历数组
+  // 外层循环以最大元素的位数作为遍历次数
+  for (let digit = 1; digit <= max_len; digit++) {
+    // 初始化0-9 10个数组，这里暂且叫做桶
+    let buckets = [];
+    for (let i = 0; i < 10; i++) buckets[i] = [];
+    // 遍历数组
+    for (let i = 0; i < arr.length; i++) {
+      // 取出一个元素
+      let ele = arr[i];
+      // 获取当前元素该位上的值
+      let value_of_this_digit = getSpecifiedValue(ele, digit);
+      // 根据该值，决定当前元素要放到哪个桶里
+      buckets[value_of_this_digit].push(ele);
+      console.log(buckets);
+    }
+    // 每次内层遍历结束，把所有桶里的元素依次取出来，覆盖原数组
+    let result = [];
+    buckets
+      .toString()
+      .split(",")
+      .forEach(val => {
+        if (val) result.push(parseInt(val));
+      });
+    // 得到了一个排过序的新数组，继续下一轮外层循环，比较下一位
+    arr = result;
+    console.log(arr);
+  }
+}
+
+function getLengthOfNum(num) {
+  return (num += "").length;
+}
+
+// 获取一个数字指定位数上的值，超长时返回0
+// 个位的位数是1，十位的位数是2 ...
+function getSpecifiedValue(num, position) {
+  return (
+    (num += "")
+      .split("")
+      .reverse()
+      .join("")[position - 1] || 0
+  );
 }
