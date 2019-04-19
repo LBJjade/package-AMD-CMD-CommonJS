@@ -295,3 +295,43 @@ function getSpecifiedValue(num, position) {
       .join("")[position - 1] || 0
   );
 }
+
+// MSD
+function getLengthOfNum(num) { return (num += '').length }
+
+// 获取一个数字指定位数上的值，超长时返回0
+// 个位的位数是1，十位的位数是2 ...
+function getSpecifiedValue(num, position) { return (num += '').split('').reverse().join('')[position - 1] || 0 }
+
+function radixSortMSD(arr) {
+  // 最大元素
+  let max_num = Math.max(...arr),
+    // 获取其位数作为初始值，最小值为1，也就是个位
+    digit = getLengthOfNum(max_num)
+  return msd(arr, digit)
+}
+function msd(arr, digit) {
+  // 建10个桶
+  let buckets = []
+  for (let i = 0; i < 10; i++) buckets[i] = []
+  // 遍历数组，入桶。这里跟 LSD 一样
+  for (let i = 0; i < arr.length; i++) {
+    let ele = arr[i]
+    let value_of_this_digit = getSpecifiedValue(ele, digit)
+    buckets[value_of_this_digit].push(ele)
+  }
+  // 结果数组
+  let result = []
+  // 遍历每个桶
+  for (let i = 0; i < buckets.length; i++) {
+    // 只剩一个元素，直接加入结果数组
+    if (buckets[i].length === 1) result = result.concat(buckets[i])
+    // 还有多个元素，但是已经比较到个位了
+    // 说明是重复元素的情况，也直接加入结果数组
+    else if (buckets[i].length && digit === 1) result = result.concat(buckets[i])
+    // 还有多个元素，并且还没有比较结束，递归比较下一位
+    else if (buckets[i].length && digit !== 1) result = result.concat(msd(buckets[i], digit - 1))
+    // 空桶就不作处理了
+  }
+  return result
+}
