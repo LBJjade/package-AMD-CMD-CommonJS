@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .main div {
+            height: 1000px;
+            width: 300px;
+            margin: 20px;
+            background-color: #C0C0C0;
+        }
+
+        #nav {
+            position: fixed;
+            width: 100px;
+            height: 200px;
+            top: 40%;
+            right: 10px;
+        }
+
+        #nav div {
+            cursor: pointer;
+            text-align: center;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>scroll</h2>
+        <div id="nav">
+            <div class="f1">floor1</div>
+            <div class="f2">floor2</div>
+            <div class="f3">floor3</div>
+            <div class="f4">floor4</div>
+            <div class="f5">floor5</div>
+        </div>
+        <p>
+            页面结构
+        </p>
+        <div class="main">
+            <div id="f1">测试1</div>
+            <div id="f2">测试2</div>
+            <div id="f3">测试3</div>
+            <div id="f4">测试4</div>
+            <div id="f5">测试5</div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    $(function () {
+        $(window).scroll(function () {//为页面添加页面滚动监听事件
+            var wst = $(window).scrollTop(); //滚动条距离顶端值
+            for (var i = 1; i < 6; i++) {             //加循环
+                if ($("#f" + i).offset().top <= wst + 10) { //判断滚动条位置
+                    $('#nav div').css("background-color", "white");
+                    $(".f" + i).css("background-color", "red");
+                }
+            }
+        });
+        $('#nav div').click(function () {
+            $('html,body').animate({ scrollTop: $("#" + this.className).offset().top }, 500);
+            //          $("#" + this.className)[0].scrollIntoView(true);//h5 scrollIntoView()
+
+        });
+    });</script>
+
+</html>
