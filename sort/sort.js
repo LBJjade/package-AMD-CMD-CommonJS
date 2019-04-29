@@ -287,6 +287,7 @@ function getLengthOfNum(num) {
 
 // 获取一个数字指定位数上的值，超长时返回0
 // 个位的位数是1，十位的位数是2 ...
+
 function getSpecifiedValue(num, position) {
   return (
     (num += "")
