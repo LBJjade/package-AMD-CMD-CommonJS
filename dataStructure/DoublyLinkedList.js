@@ -115,32 +115,5 @@ function DoublyLinkedList() {
 }
 
 
-// 请实现一个 flattenDeep 函数，把嵌套的数组扁平化
-// 利用 Array.prototype.flat
-// ES6 为数组实例新增了 flat 方法，用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数组没有影响。
-// flat 默认只会 “拉平” 一层，如果想要 “拉平” 多层的嵌套数组，需要给 flat 传递一个整数，表示想要拉平的层数。
-function flattenDeep(arr){
-  return arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val), []);
-}
-console.log(flattenDeep([1, [2, [3, [4]], 5]]));
-
-
-function flattenDeep(input) {
-  const stack = [...input];
-  const res = [];
-  while (stack.length) {
-      // 使用 pop 从 stack 中取出并移除值
-      const next = stack.pop();
-      if (Array.isArray(next)) {
-          // 使用 push 送回内层数组中的元素，不会改动原始输入 original input
-          stack.push(...next);
-      } else {
-          res.push(next);
-      }
-  }
-  // 使用 reverse 恢复原数组的顺序
-  return res.reverse();
-}
-console.log(flattenDeep([1, [2, [3, [4]], 5]]));
 
 
