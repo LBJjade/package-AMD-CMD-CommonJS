@@ -128,3 +128,34 @@ function flattenDeep(arr){
   }
   console.log(flattenDeep([1, [2, [3, [4]], 5]]));
   
+
+//   1 js控制锚点跳转
+
+{/* <a name="anchor"></a>
+
+location.hash="anchor";
+
+不只有a其他元素也可以，比如在报表中：
+<tr id="tr1">...</tr>
+location.hash="tr1"
+或者用jQuery的动画滚动效果：
+var id="tr1";
+$('html,body').animate({scrollTop: $("tr#"+id).offset().top}, 500);
+
+ 
+
+2 html控制锚点跳转
+
+<a href="#btn">跳转到点击位置</a>
+<a name="btn" id="btn" > 点击</a>
+
+3跨页面锚点跳转
+
+代码如下
+<a href="123.html#btn">跳到btn</a>
+<a name="btn" id="btn" > </a>
+
+4js控制锚点跳转在HTML中实现方式
+
+<div id="divNode"><!-- contents --></div><!-- 假设一个需要跳转到的节点 -->  
+<a href="#" onclick="document.getElemetnById('divNode').scrollIntoView(true);return false;">通过scrollIntoView实现锚点效果</a>   */}
