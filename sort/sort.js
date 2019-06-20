@@ -176,8 +176,9 @@ function shellSort(arr) {
   return arr;
 }
 
-// 快速排序
 
+
+// 快速排序
 function quickSort(arr) {
   // 只剩1个元素，不能再分割了
   if (arr.length <= 1) return arr;
@@ -198,7 +199,6 @@ function quickSort(arr) {
 }
 
 // 归并排序
-
 // 分割
 function mergeSort2(arr) {
   // 如果只剩一个元素，分割结束
