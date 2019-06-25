@@ -159,3 +159,7 @@ $('html,body').animate({scrollTop: $("tr#"+id).offset().top}, 500);
 
 <div id="divNode"><!-- contents --></div><!-- 假设一个需要跳转到的节点 -->  
 <a href="#" onclick="document.getElemetnById('divNode').scrollIntoView(true);return false;">通过scrollIntoView实现锚点效果</a>   */}
+
+
+
+
