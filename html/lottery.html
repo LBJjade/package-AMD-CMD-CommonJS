@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="con-center">
+    <ul class="prize-area ">
+      <li class="prize active"><img src="../images/prize1.jpg" alt="">
+        <p class="prize-name">板砖</p>
+      </li>
+      <li class="prize"><img src="../images/prize2.jpg" alt="">
+        <p class="prize-name">红酒</p>
+      </li>
+      <li class="prize"><img src="../images/prize3.jpg" alt="">
+        <p class="prize-name">话费点X1</p>
+      </li>
+      <li class="prize"><img src="../images/prize4.jpg" alt="">
+        <p class="prize-name">会员月卡</p>
+      </li>
+      <li class="prize"><img src="../images/prize5.jpg" alt="">
+        <p class="prize-name">300游戏币</p>
+      </li>
+      <li class="btn-list"><a class="btn btn-lottery" href="javascript:;"></a></li>
+      <li class="prize"><img src="../images/prize6.jpg" alt="">
+        <p class="prize-name">鸡蛋</p>
+      </li>
+      <li class="prize"><img src="../images/prize7.jpg" alt="">
+        <p class="prize-name">玫瑰</p>
+      </li>
+      <li class="prize"><img src="../images/prize8.jpg" alt="">
+        <p class="prize-name">拖鞋</p>
+      </li>
+      <li class="prize"><img src="../images/prize9.jpg" alt="">
+        <p class="prize-name">500游戏币</p>
+      </li>
+      <li class="prize"><img class="png" src="../images/prize10.jpg" alt="">
+        <p class="prize-name">小喇叭</p>
+      </li>
+    </ul>
+    <p class="lottery dv">我的抽奖次数: <span id="num"> 5 </span>[<a href="">获得更多抽奖机会</a>]</p>
+    <p class="coupon">我有<i id="totalCoupon">30000000</i>兑换券，每次抽奖消耗<i id="couponNum"> 20</i>兑换券</p>
+  </div>
+</body>
+<script type="text/javascript">
+  var oPageUrl = {
+    lottery: '/lottery'//抽奖url
+  };
+  var islogin = true;
+  // 当前用户抽奖总次数
+  var lotteryTotal = 3;
+</script>
+<script>
+  var ui = {};
+  ui.$lotteryBtn = $('.btn-lottery');
+  ui.$num = $('#num');
+  ui.$prize = $('.prize');
+  ui.$totalCoupon = $('#totalCoupon');
+  ui.$couponNum = $('#couponNum');
+
+  /* 抽奖 */
+  var len = ui.$prize.length  //奖品个数
+    , j = 0 // 奖品序号数组的下标
+    , prizeTime = null // 抽奖轮播定时器
+    , array = [0, 1, 2, 3, 5, 9, 8, 7, 6, 4] // 奖品序号数组
+    , tag = false  // 监听一定的时间
+    , t = undefined // 中奖奖品序号
+    , circleTime = 2000
+    , changeTime = 100
+    , i = 0
+    , message = '';
+  ui.$lotteryBtn.on('click', function () {
+    j = 0;
+    t = undefined;
+    tag = false;
+    if (islogin) {
+      if (prizeTime) {
+        return;
+      }
+      if (lotteryTotal > 0) {
+        var totalCoupon = parseInt(ui.$totalCoupon.text())
+          , couponNum = parseInt(ui.$couponNum.text());
+        changePrize();
+        setTimeout(circlePrize, circleTime);
+        $.ajax({
+          url: oPageUrl.lottery
+          , dataType: 'json'
+          , data: {}
+          , type: "POST"
+        }).done(function (msg) {
+          // msg.code = 1;
+          if (msg.code == 0) {
+            t = parseInt(msg.data.position) - 1;
+            message = msg.message;
+            ui.$totalCoupon.text(totalCoupon - couponNum);
+          } else {
+            clearTimeout(prizeTime);
+            prizeTime = null;
+            ui.$lotteryFailBox.find(".title span").eq(1).html(msg.message);
+            self.fshowFailBox(true);
+          }
+        });
+      } else {
+        ui.$lotteryFailBox.find(".title span").eq(1).html("对不起，您没有抽奖机会！");
+        self.fshowFailBox(true);
+      }
+    } else {
+      self.fshowLoginBox(true);
+    }
+  });
+  function changePrize() {
+    j++;
+    j = j % len;
+    ui.$prize.removeClass('active').eq(array[j]).addClass('active');
+    if (tag == true && array[j] == t) {
+      self.fshowSucBox(true, message);
+      clearTimeout(prizeTime);
+      prizeTime = null;
+      return;
+    }
+    prizeTime = setTimeout(changePrize, changeTime);
+  }
+  function circlePrize() {
+    if (t == undefined) {
+      if (circleTime > 400) {
+        circleTime = circleTime / 2;
+      }
+      setTimeout(circlePrize, circleTime);
+    } else {
+      tag = true;
+    }
+  }
+            /* 抽奖 end*/
+</script>
+
+</html>
