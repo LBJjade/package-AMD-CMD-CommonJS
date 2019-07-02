@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>酷播云演示,酷播云免费无广告</title>
+<meta name="keywords" content="酷播云免费无广告,酷播官方,cuplayer"/>
+<meta name="description" content="酷播云免费无广告,酷播云演示实例"/>
+<link rel="stylesheet" type="text/css" href="../css/common.css">
+<style type="text/css">
+<!--
+.playbox { line-height:32px; font-size:14px;margin-top:20px;}
+-->
+</style>
+</head>
+<body> 
+<!--//header-->
+<div id="header">
+  <div id="menu">
+    <p class="logo"><a href="http://www.52player.cn" target="_blank"><img src="http://www.52player.cn/images/52playerlogo.png" alt="我爱播放器官网" /></a></p>
+    <ul class="nav">
+      <li><a href="http://www.52player.cn/index.html" target="_blank">返回网站</a></li>
+      <li><a href="http://www.52player.cn/VideoPlayer/" target="_blank">视频播放器</a></li>
+      <li><a href="http://www.52player.cn/MusicPlayer/" target="_blank">音乐播放器</a></li>
+      <li><a href="http://www.52player.cn/WebPlayer/" target="_blank">网页播放器</a></li>
+      <li><a href="http://www.52player.cn/PicPlayer/" target="_blank">图片播放器</a></li>
+      <li><a href="http://www.52player.cn/top/" class="top" target="_blank">下载排行榜</a></li>
+    </ul>
+  </div>
+</div>
+<div class="bnk"></div>
+<!--//header-->
+
+<h1 class="mtop">酷播云 (标准代码演示)</h1>
+<div class="introduce"><strong>酷播云 HTML5 标准代码 ：</strong></div>
+<div class="code">&lt;div id=&quot;player&quot;&gt;&lt;/div&gt;<br />
+  &lt;script src=&quot;//player.polyv.net/script/player.js&quot;&gt;&lt;/script&gt;<br />
+  &lt;script&gt;<br />
+var player = polyvPlayer({<br />
+<strong>wrap: '#player',<br />
+width: 800,<br />
+height: 533,<br />
+vid: 'e785b2c81c9e018296671a1287e99615_e',</strong><br />
+});<br />
+&lt;/script&gt;</div>
+<div class="introduce"><strong>演示效果 ：</strong></div>
+<div class="playbox"><script src='//player.polyv.net/script/polyvplayer.min.js'></script>
+<div id='plv_e785b2c81c9e018296671a1287e99615_e'></div>
+<script>
+var player = polyvObject('#plv_e785b2c81c9e018296671a1287e99615_e').videoPlayer({
+'width':'750',
+'height':'450',
+'vid' : 'e785b2c81c9e018296671a1287e99615_e' ,
+'forceH5':true 
+});
+</script></div>
+<div class="btn clearfix">
+<ul class="downurllist">
+<li class="demo"><a href="demo01.html" target="_blank">本地演示</a></li>
+<li ><a href="http://www.cuplayer.com/cloud/index.html" target="_blank">了解酷播云</a></li>
+<li ><a href="http://my.cuplayer.com/register" target="_blank">注册免费使用</a></li>
+</ul>
+</div>
+ 
+
+<!-- help/Bgein -->
+<div class="help mtop">
+  <h2>播放器参数选项</h2>
+  <table border="0" cellpadding="5" cellspacing="1" style="background:#ccc;">
+    <tbody>
+      <tr>
+        <th bgcolor="#efefef">参数</th>
+        <th bgcolor="#efefef">类型</th>
+        <th bgcolor="#efefef">默认值</th>
+        <th bgcolor="#efefef">说明</th>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">wrap</td>
+        <td bgcolor="#efefef">string / HTMLElement</td>
+        <td bgcolor="#efefef">-</td>
+        <td bgcolor="#efefef">页面上存在需要载入播放器的DOM元素或css选择器</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">width</td>
+        <td bgcolor="#efefef">number / string</td>
+        <td bgcolor="#efefef">100%</td>
+        <td bgcolor="#efefef">播放器的宽度</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">height</td>
+        <td bgcolor="#efefef">number / string</td>
+        <td bgcolor="#efefef">auto</td>
+        <td bgcolor="#efefef">播放器的高度</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">vid</td>
+        <td bgcolor="#efefef">string</td>
+        <td bgcolor="#efefef">-</td>
+        <td bgcolor="#efefef">从 polyv 后台上传的视频会生成一个视频唯一vid</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">loop</td>
+        <td bgcolor="#efefef">boolean</td>
+        <td bgcolor="#efefef">false</td>
+        <td bgcolor="#efefef">视频播放结束后是否循环播放</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">autoplay</td>
+        <td bgcolor="#efefef">boolean</td>
+        <td bgcolor="#efefef">false</td>
+        <td bgcolor="#efefef">播放器加载后视频是否自动播放</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">volume</td>
+        <td bgcolor="#efefef">number</td>
+        <td bgcolor="#efefef">0.75</td>
+        <td bgcolor="#efefef">视频默认音量大小，范围 (0, 1)，播放器会记录上一次播放的音量</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">flash</td>
+        <td bgcolor="#efefef">boolean</td>
+        <td bgcolor="#efefef">false</td>
+        <td bgcolor="#efefef">是否默认打开flash播放器</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">df</td>
+        <td bgcolor="#efefef">number</td>
+        <td bgcolor="#efefef">-</td>
+        <td bgcolor="#efefef">视频默认清晰度，可设置为0、1、2、3，分别对应自动、流畅、高清、超清，设置该参数会覆盖后台的设置</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">hideRepeat</td>
+        <td bgcolor="#efefef">boolean</td>
+        <td bgcolor="#efefef">false</td>
+        <td bgcolor="#efefef">播放结束后是否显示重播面板，可通过play.HTML5.changeRepeat改变</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">code</td>
+        <td bgcolor="#efefef">string</td>
+        <td bgcolor="#efefef">-</td>
+        <td bgcolor="#efefef">跑马灯设置中自定义的code值</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">speed</td>
+        <td bgcolor="#efefef">boolean/array</td>
+        <td bgcolor="#efefef">[2, 1.5, 1.2, 0.5]</td>
+        <td bgcolor="#efefef">设置为false则关闭倍速，可传入数组自定义显示哪几种倍速，速率1不需要填入，会自动添加，所设置速率值必须大于0，少于或等于3，最多设置6种速率（不包含1），所设置值会按由大到小自动排序</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">showHd</td>
+        <td bgcolor="#efefef">boolean</td>
+        <td bgcolor="#efefef">true</td>
+        <td bgcolor="#efefef">是否显示清晰度选择</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">ignoreIE</td>
+        <td bgcolor="#efefef">boolean</td>
+        <td bgcolor="#efefef">false</td>
+        <td bgcolor="#efefef">设置该选项将会在ie浏览器中禁用HTML5播放器（edge浏览器除外，国内360，QQ等浏览器的兼容模式表现为ie浏览器，所以也会被禁用）</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">watchStartTime</td>
+        <td bgcolor="#efefef">number</td>
+        <td bgcolor="#efefef">undefined</td>
+        <td bgcolor="#efefef">从第几秒开始播放，需少于视频时长</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">watchEndTime</td>
+        <td bgcolor="#efefef">number</td>
+        <td bgcolor="#efefef">undefined</td>
+        <td bgcolor="#efefef">播放到第几秒结束播放，需少于视频时长，在该值到结束的进度条禁止点击，如果设置值少入watchStartTime，则watchStartTime失效</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">skinLocation</td>
+        <td bgcolor="#efefef">number</td>
+        <td bgcolor="#efefef">1</td>
+        <td bgcolor="#efefef">控制栏显示在视频区域内外或不显示，可选0（不显示）、1（视频内）、2（视频外)</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">ban_history_time</td>
+        <td bgcolor="#efefef">string</td>
+        <td bgcolor="#efefef">off</td>
+        <td bgcolor="#efefef">是否禁止记住播放进度，下次打开会从上次进度打开（设置watchStartTime后还是会从watchStartTime处开始播放），默认为off(不禁止)，on为禁止</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">hideSwitchPlayer</td>
+        <td bgcolor="#efefef">boolean</td>
+        <td bgcolor="#efefef">false</td>
+        <td bgcolor="#efefef">是否禁止显示HTML5与flash播放器切换按钮</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">priorityMode</td>
+        <td bgcolor="#efefef">string</td>
+        <td bgcolor="#efefef">video</td>
+        <td bgcolor="#efefef">默认打开视频模式还是音频模式，需要该视频有对应的音频转码可选video/audio</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">audioMode</td>
+        <td bgcolor="#efefef">boolean</td>
+        <td bgcolor="#efefef">true</td>
+        <td bgcolor="#efefef">是否开启音频模式</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">videoMode</td>
+        <td bgcolor="#efefef">boolean</td>
+        <td bgcolor="#efefef">true</td>
+        <td bgcolor="#efefef">是否开启视频模式，设置为false后将会以音频模式播放，无论是否有音频转码</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">screenshot</td>
+        <td bgcolor="#efefef">boolean</td>
+        <td bgcolor="#efefef">false</td>
+        <td bgcolor="#efefef">是否开启视频截图功能</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">ban_seek_by_limit_time</td>
+        <td bgcolor="#efefef">string</td>
+        <td bgcolor="#efefef">on</td>
+        <td bgcolor="#efefef">是否禁止视频拖拽为播放区域</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">ban_seek</td>
+        <td bgcolor="#efefef">string</td>
+        <td bgcolor="#efefef">off</td>
+        <td bgcolor="#efefef">设置为 on 播放器将会彻底禁止拖拽</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">loading_bg_img</td>
+        <td bgcolor="#efefef">string</td>
+        <td bgcolor="#efefef">-</td>
+        <td bgcolor="#efefef">视频默认封面图</td>
+      </tr>
+      <tr>
+        <td bgcolor="#efefef">ban_record_interaction_right_answer</td>
+        <td bgcolor="#efefef">string</td>
+        <td bgcolor="#efefef">off</td>
+        <td bgcolor="#efefef">设置为 on 问答回答正确不会记录，每次刷新播放都需重新回答</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p><strong>遇到问题如何获得帮助：</strong><br />
+        * 酷播官方客服：<a href="http://www.cuplayer.com/CuPlayer/service.html" target="_blank">http://www.cuplayer.com/CuPlayer/service.html</a><br />
+        <strong>如何正确的向客服提问？</strong> <br />
+    A:请将您的测试页上传到您的某个网站目录下，然后把测试页地址发给客服，此种情况下，问题解决率达90%以上。<br />
+    （如果您无法提供测试页地址，很多问题，无法协助您找出准确的原因）； <br />
+  B:不能提供外网测试页面的提问，问题解决率仅为5% 左右。<br />
+  <strong>酷播云官方网站：</strong> <a href="http://www.cuplayer.com/Cloud/" target="_blank">http://www.cuplayer.com/Cloud/</a><br />
+  <strong>酷播V4.0版官方网站：</strong> <a href="http://www.cuplayer.com/CuPlayer/" target="_blank">http://www.cuplayer.com/CuPlayer/</a><br />
+  </p>
+</div>
+<!-- help/End -->
+<div style="display:none;">
+<script type="text/javascript" src="http://www.cuplayer.com/CuPlayer/js/stat.js"></script>
+ 
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?88044433be4dc0380121d6db6d991662";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</div>
+
+</body>
+</html>
+
