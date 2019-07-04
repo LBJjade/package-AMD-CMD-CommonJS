@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+      <video id="media" src="http://200021507.vod.myqcloud.com/200021507_8a9451f48f8711e6b4f5452017aa0113.f30.mp4" controls width="400px" heigt="400px"></video>  
+<script>
+
+
+
+// var md=document.getElementsByName("video");
+var md=document.getElementsByTagName("video")[0];
+    if(md.ended){
+        console.log("结束");
+    }
+    md.addEventListener("ended",function(){
+         console.log("结束");
+    })
+</script>
+
+</body>
+</html>
