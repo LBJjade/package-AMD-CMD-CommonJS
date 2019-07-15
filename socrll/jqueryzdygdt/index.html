@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义滚动条实现</title>
+	<link rel="stylesheet" href="css/roll.css">
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="js/scrollbar.js" type="text/javascript"/></script>
+</head>
+<body>
+	<div class="scroll_main">
+		<div class="scroll_wrap">
+			<div class="scroll_cont">
+				
+                    <p>jQuery 是由美国人 John Resig 于 2006 年创建的一个开源项目，随着被人们的熟知，越
+                        来越多的程序高手加入其中，完善和壮大其项目内容 ；如今已发展成为集 JavaScript、CSS、
+                        DOM、Ajax 于一体的强大框架体系，它的主旨是 ：以更少的代码，实现更多的功能（Write
+                        less，do more）。</p>
+                    <p>1. 访问和操作 DOM 元素<br/>
+                        使用 jQuery 库，可以很方便地获取和修改页面中的某元素，无论是删除、移动、复制某
+                        元素，jQuery 都提供了一整套方便、快捷的方法，既减少了代码的编写，又大大提高了用户
+                        对页面的体验度。具体示例我们将在后面的章节中陆续展示。</p>
+                    <p>2. 控制页面样式<br/>
+                        通过引入 jQuery， 程序开发人员可以很便捷地控制页面的 CSS 文件。浏览器对页面文件
+                        的兼容性一直以来都是页面开发者最为头痛的事，而使用 jQuery 操作页面的样式，却可以很
+                        好地兼容各种浏览器。</p>
+                    <p>3. 对页面事件的处理<br/>
+                        引入 jQuery 库后，使页面的表现层与功能开发分离，开发者可以更多地专注于程序的逻
+                        辑与功效 ；页面设计者侧重于页面的优化与用户体验，通过事件绑定机制，可以很轻松地实
+                        现二者的结合。</p>
+                    <p>4. 大量插件在页面中的运用<br/>
+                        在引入 jQuery 库后，还可以使用大量的插件来完善页面的功能和效果，如表单插件、UI
+                        插件，这些插件的使用，极大丰富了页的展示效果，原来使用 JavaScript 代码遥不可及的功
+                        能，通过插件的引入都可以轻松实现。</p>
+                    <p>5. 与 Ajax 技术的完美结合<br/>
+                        Ajax 的异步读取服务器数据的方法，极大方便了程序的开发，加深了用户的页面体验
+                        度；而引入 jQuery 库后，不仅完善了原有的功能，而且减少了代码的书写，利用其内部对象
+                        或函数，加上几行代码就可以实现复杂的功能。</p>
+                    <p>1. 根据浏览器类型自动为 CSS 属性添加对应的前缀名称<br/>
+                        在 jQuery 1.8 及以上版本中，使用 jQuery 设置一些尚未正式纳入 W3C 标准的样式属性时，
+                        将会根据浏览器的类型，自动在属性前添加对应的前缀名称，如设置“marquee-direction”属
+                        性时，如果在 Chrome 浏览器中执行时，则会自动变为“-webkit-marquee-direction”。</p>
+                    <p>2. 重构了动画方法<br/>
+                        在 jQuery 1.8 及以上版本中，通过改进后的 $.Animation 函数，用户可以更加容易地添
+                        加或修改动画。在改进功能的同时，还修复了许多动画的 Bug，使动画效果既具有综合性，
+                        又具有代码的扩展性。</p>
+                    <p>3. 优化了选择器引擎<br/>
+                        在 jQuery 1.8 及以上版本中，不仅重写了选择器引擎，而且还对原有的引擎功能进行了
+                        性能优化，修复了一些边缘问题和 Bug，其中包括对多个选择符“~ > +”功能的改进；同时，
+                        还清理了代码，使 jQuery 1.8 及以上版本比 jQuery 1.7.2 的体积少几百字节。</p>
+                    <p>4. 强化 XSS 防护功能<br/>
+                        XSS 为 Cross Site Scripting 缩写，意为跨站点脚本代码攻击，为避免与 CSS 缩写重复，故
+                        缩写为 XSS。在 jQuery 1.8 及以上版本中，通过新增加的“$.parseHTML”方法，可以将方法
+                        中的字符串解析为 DOM 元素块，又可以控制字符串中脚本的执行，防范脚本代码的攻击。</p>
+                    <p>5. 自定义专属版本<br/>
+                        我们在开发过程中，往往使用的 jQuery 功能只有少量部分，还有大部分的功能被闲置，
+                        而在 jQuery 1.8 及以上版本中，用户可以通过基于 grunt 的构建系统，移除这些被闲置的模块，
+                        重新自定义一个专属版本，目前可移除的模块包括 ajax、css、dimensions、effects 和 offset。
+                        此外，jQuery 在页面中的功能还有很多，我们将在接下来的章节中一一介绍。</p>
+                
+			</div>
+
+			<div class="scroll_bar">
+				<div class="scroll_slider"></div>
+			</div>
+		</div> 
+	</div>
+<script type="text/javascript">
+    new CusScrollBar({
+      contentSelector: '.scroll_cont', //滚动内容区
+      barSelector: '.scroll_bar', //滚动条
+      sliderSelector: '.scroll_slider' //滚动滑块
+    });
+</script>
+</body>
+</html>
