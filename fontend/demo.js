@@ -1,3 +1,11 @@
+/*
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2019-05-30 16:09:25
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2019-08-19 09:37:34
+ */
 
 // 什么是闭包？闭包的作用是什么？
 // 什么是闭包？
@@ -164,3 +172,40 @@ $('html,body').animate({scrollTop: $("tr#"+id).offset().top}, 500);
 
 
 
+
+//数组中的元素全部满足指定条件返回true
+//运行结果为false
+var checknum = [15,3,2,6,7,1,9,10];
+var checkresult = checknum.every(function(item,index,array){
+      return item > 1 ;    
+});
+alert(checkresult);
+
+
+//数组中的元素部分满足指定条件返回true
+//运行结果为false
+var checknum = [15,3,2,6,7,1,9,10];
+var checkresult = checknum.some(function(item,index,array){
+     return item > 15;
+});
+alert(checkresult);
+
+
+//把符合条件的项目组成一个新的数组
+var checknum = [15,3,2,6,7,1,9,10];
+var checkresult = checknum.filter(function(item,index,array){
+       return item > 3;
+ });
+checkresult.forEach(function(value, index, array){
+       console.log(value);
+})
+
+
+//把符合条件的项目组成一个新的数组
+var checknum = [15,3,2,6,7,1,9,10];
+var checkresult = checknum.filter(function(item,index,array){
+       return item > 3;
+ });
+checkresult.forEach(function(value, index, array){
+       console.log(value);
+})
