@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2019-05-30 16:09:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2019-08-19 09:37:34
+ * @LastEditTime: 2019-08-19 20:23:28
  */
 
 // 什么是闭包？闭包的作用是什么？
@@ -201,11 +201,25 @@ checkresult.forEach(function(value, index, array){
 })
 
 
-//把符合条件的项目组成一个新的数组
+//对数组元素进行运算并将运算结果
 var checknum = [15,3,2,6,7,1,9,10];
-var checkresult = checknum.filter(function(item,index,array){
-       return item > 3;
- });
+var checkresult = checknum.map(function(value, index, array){
+     return '新值：' + parseInt(value + 1);
+});
 checkresult.forEach(function(value, index, array){
-       console.log(value);
-})
+     console.log(value);
+ })
+ 
+ 
+var obj = { a: 1 };
+var copy = Object.assign({}, obj);
+console.log(copy); // { a: 1 }
+
+
+var o1 = { a: 1 };
+var o2 = { b: 2 };
+var o3 = { c: 3 };
+
+var obj = Object.assign(o1, o2, o3);
+console.log(obj); // { a: 1, b: 2, c: 3 }
+console.log(o1);  // { a: 1, b: 2, c: 3 }, 注意目标对象自身也会改变。
