@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2019-05-30 16:09:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2019-08-19 20:23:28
+ * @LastEditTime: 2019-08-19 20:27:44
  */
 
 // 什么是闭包？闭包的作用是什么？
@@ -223,3 +223,37 @@ var o3 = { c: 3 };
 var obj = Object.assign(o1, o2, o3);
 console.log(obj); // { a: 1, b: 2, c: 3 }
 console.log(o1);  // { a: 1, b: 2, c: 3 }, 注意目标对象自身也会改变。
+
+
+// 上面我们看到，目标对象o1自身也发生了改变。假如我们不想让o1改变，我们可以把三个对象合并到一个空的对象中，操作如下：
+var obj = Object.assign({},o1, o2, o3);
+console.log(obj); // { a: 1, b: 2, c: 3 }
+console.log(o1);  // { a: 1 }
+
+// 注意：以下几个地方可能copy或者合并不成功，经常在面试中出现！
+// 1、继承属性和不可枚举属性是不能拷贝的
+
+var obj = Object.create({foo: 1}, { // foo 是个继承属性。
+    bar: {
+        value: 2  // bar 是个不可枚举属性。
+    },
+    baz: {
+        value: 3,
+        enumerable: true  // baz 是个自身可枚举属性。
+    }
+});
+
+var copy = Object.assign({}, obj);
+console.log(copy); // { baz: 3 }
+
+// 2、原始类型会被包装为 object
+
+var v1 = "abc";
+var v2 = true;
+var v3 = 10;
+var v4 = Symbol("foo")
+
+var obj = Object.assign({}, v1, null, v2, undefined, v3, v4); 
+// 原始类型会被包装，null 和 undefined 会被忽略。
+// 注意，只有字符串的包装对象才可能有自身可枚举属性。
+console.log(obj); // { "0": "a", "1": "b", "2": "c" }
