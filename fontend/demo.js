@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2019-05-30 16:09:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2019-08-19 20:27:44
+ * @LastEditTime: 2019-08-20 17:03:03
  */
 
 // 什么是闭包？闭包的作用是什么？
@@ -257,3 +257,95 @@ var obj = Object.assign({}, v1, null, v2, undefined, v3, v4);
 // 原始类型会被包装，null 和 undefined 会被忽略。
 // 注意，只有字符串的包装对象才可能有自身可枚举属性。
 console.log(obj); // { "0": "a", "1": "b", "2": "c" }
+
+// 3、异常会打断接下来的拷贝任务
+
+var target = Object.defineProperty({}, "foo", {
+    value: 1,
+    writable: false
+}); // target 的 foo 属性是个只读属性。
+
+Object.assign(target, {bar: 2}, {foo2: 3, foo: 3, foo3: 3}, {baz: 4});
+// TypeError: "foo" is read-only
+// 注意这个异常是在拷贝第二个源对象的第二个属性时发生的。
+
+console.log(target.bar);  // 2，说明第一个源对象拷贝成功了。
+console.log(target.foo2); // 3，说明第二个源对象的第一个属性也拷贝成功了。
+console.log(target.foo);  // 1，只读属性不能被覆盖，所以第二个源对象的第二个属性拷贝失败了。
+console.log(target.foo3); // undefined，异常之后 assign 方法就退出了，第三个属性是不会被拷贝到的。
+console.log(target.baz);  // undefined，第三个源对象更是不会被拷贝到的。
+
+// Object.create()
+// 这个我之前就提到过了，可以模拟出js中的“类”。具体可以看：http://www.haorooms.com/post/js_lei_jicheng
+
+// 注意！上文中我只应用了Object.create()的第一个参数，其实还有第二个参数！
+// Object.create(proto, [ propertiesObject ])
+
+
+var o;
+o = Object.create(Object.prototype, {
+  // foo会成为所创建对象的数据属性
+  foo: { writable:true, configurable:true, value: "hello" },
+  // bar会成为所创建对象的访问器属性
+  bar: {
+    configurable: false,
+    get: function() { return 10 },
+    set: function(value) { console.log("Setting `o.bar` to", value) }
+}})
+
+// 创建一个以另一个空对象为原型,且拥有一个属性p的对象
+o = Object.create({}, { p: { value: 42 } })
+
+// 省略了的属性特性默认为false,所以属性p是不可写,不可枚举,不可配置的:
+o.p = 24
+o.p
+//42
+
+o.q = 12
+for (var prop in o) {
+   console.log(prop)
+}
+//"q"
+
+delete o.p
+//false
+
+//创建一个可写的,可枚举的,可配置的属性p
+o2 = Object.create({}, { p: { value: 42, writable: true, enumerable: true, configurable: true } });
+
+
+// Object.is()
+// 用来判断两个值是否是同一个值。
+
+// 下面是一些例子，面试中可能会提及
+
+Object.is('haorooms', 'haorooms');     // true
+Object.is(window, window);   // true
+
+Object.is('foo', 'bar');     // false
+Object.is([], []);           // false
+
+var test = { a: 1 };
+Object.is(test, test);       // true
+
+Object.is(null, null);       // true
+
+// 特例
+Object.is(0, -0);            // false
+Object.is(-0, -0);           // true
+Object.is(NaN, 0/0);         // true
+
+// Object.keys()
+// 这个方法会返回一个由给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 （两者的主要区别是 一个 for-in 循环还会枚举其原型链上的属性）。
+
+// 例如：
+
+/* 类数组对象 */ 
+var obj = { 0 : "a", 1 : "b", 2 : "c"};
+alert(Object.keys(obj)); 
+// 弹出"0,1,2"
+
+/* 具有随机键排序的数组类对象 */
+var an_obj = { 100: 'a', 2: 'b', 7: 'c' };
+console.log(Object.keys(an_obj)); 
+// console: ['2', '7', '100']
