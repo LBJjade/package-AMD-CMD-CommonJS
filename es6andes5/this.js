@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-10-08 16:24:59
- * @LastEditTime: 2019-10-08 16:45:17
+ * @LastEditTime: 2019-10-10 21:02:38
  * @LastEditors: Please set LastEditors
  */
 
@@ -203,4 +203,4 @@ function aa(x, y) {
 }
 
 aa.bind(Person, 4, 5); //只是更改了this指向，没有输出
-aa.bind(Person, 4, 5)(); //this指向Person--4,5  Person{}对象  zhangsanF
+aa.bind(Person, 4, 5)(); //this指向Person--4,5  Person{}对象  zhangsan
