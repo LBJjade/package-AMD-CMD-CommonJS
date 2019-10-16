@@ -1,0 +1,85 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-15 12:00:58
+ * @LastEditTime: 2019-10-15 14:18:39
+ * @LastEditors: Please set LastEditors
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>canvas合成网络图片</title>
+  </head>
+  <style>
+    #h {
+      text-align: center;
+    }
+
+    #h canvas {
+      border-radius: 10px;
+    }
+  </style>
+
+  <body>
+    <div id="h">
+      <canvas width="340" height="500" id="myCanvas"></canvas>
+    </div>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+      $(function() {
+        var bg = {
+          width: 340,
+          height: 500,
+          src:
+            "https://oimageb5.ydstatic.com/image?id=3493803499422546314&product=adpublish&w=1280&h=720&sc=0&rm=2&gsb=0&gsbd=60"
+        };
+        var code = {
+          width: 100,
+          height: 100,
+          src: "./img/timg.jpg"    
+        };
+        var userInfo = {
+          name: "嘉成大叔",
+          width: 170,
+          height: 170,
+          src:
+            "http://thirdwx.qlogo.cn/mmopen/BEMV4WOAicktAAllnv9FdJFSU7QYVibMU62ctg7Ie5HiaCuDVCyiapibwrs48N97yrzLel03FvOUqAHEZGfBY5tCdnuHKEg4YvZSC/132"
+        };
+        var image = new Image();
+        var image1 = new Image();
+        var image2 = new Image();
+        image.src = bg.src;
+        image1.src = code.src;
+        image2.src = userInfo.src;
+        image.setAttribute('crossOrigin', 'anonymous');
+        image1.setAttribute('crossOrigin', 'anonymous');
+        image2.setAttribute('crossOrigin', 'anonymous');
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        image.onload = function() {
+          ctx.drawImage(image, 0, 0, bg.width, bg.height);
+          ctx.drawImage(image1, 250, 100, code.width, code.height);
+
+          ctx.save();
+          ctx.arc(185, 200, 65, 0, Math.PI * 2, false);
+          ctx.clip();
+          ctx.drawImage(image2, 80, 80, userInfo.width, userInfo.height); // 在刚刚裁剪的园上画图
+          ctx.restore(); // 还原状态
+          ctx.font = "36px Georgia";
+          ctx.fillStyle = "#ffffff";
+          ctx.fillText(userInfo.name, 270, 250);
+
+          var mainImg = new Image();
+
+          var imgSrc = canvas.toDataURL("image/png");
+          mainImg.src = imgSrc;
+          $("#h").html(""); //移除已生成的避免重复生成
+          $("#h").append(mainImg);
+        };
+      });
+    </script>
+  </body>
+</html>

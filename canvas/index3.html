@@ -1,0 +1,94 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-15 15:41:16
+ * @LastEditTime: 2019-10-15 15:42:02
+ * @LastEditors: Please set LastEditors
+ -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script language="javascript">
+      window.onload = function() {
+        var eleFile = document.querySelector("#jjfxSoft_iconPath");
+        // 压缩图片需要的一些元素和对象
+        var reader = new FileReader(),
+          img = new Image();
+        // 选择的文件对象
+        var file = null;
+        // 缩放图片需要的canvas
+        var canvas = document.createElement("canvas");
+        var context = canvas.getContext("2d");
+        // base64地址图片加载完毕后
+        img.onload = function() {
+          debugger;
+          // 图片原始尺寸
+          var originWidth = this.width;
+          var originHeight = this.height;
+          // 最大尺寸限制
+          var maxWidth = 300,
+            maxHeight = 300;
+          // 目标尺寸
+          var targetWidth = originWidth,
+            targetHeight = originHeight;
+          // 图片尺寸超过300x300的限制
+          if (originWidth > maxWidth || originHeight > maxHeight) {
+            if (originWidth / originHeight > maxWidth / maxHeight) {
+              targetWidth = maxWidth;
+              targetHeight = Math.round(
+                maxWidth * (originHeight / originWidth)
+              );
+            } else {
+              targetHeight = maxHeight;
+              targetWidth = Math.round(
+                maxHeight * (originWidth / originHeight)
+              );
+            }
+          }
+
+          // canvas对图片进行缩放
+          canvas.width = targetWidth;
+          canvas.height = targetHeight;
+          // 清除画布
+          context.clearRect(0, 0, targetWidth, targetHeight);
+          // 图片压缩
+          context.drawImage(img, 0, 0, targetWidth, targetHeight);
+          var type = "image/jpeg";
+          //将canvas元素中的图像转变为DataURL
+          var dataurl = canvas.toDataURL(type);
+          $("#ceshi1").attr("src", dataurl);
+          //抽取DataURL中的数据部分，从Base64格式转换为二进制格式
+          var bin = atob(dataurl.split(",")[1]);
+          //创建空的Uint8Array
+          var buffer = new Uint8Array(bin.length);
+          //将图像数据逐字节放入Uint8Array中
+          for (var i = 0; i < bin.length; i++) {
+            buffer[i] = bin.charCodeAt(i);
+          }
+          //利用Uint8Array创建Blob对象
+          var blob = new Blob([buffer.buffer], { type: type });
+          var url = window.URL.createObjectURL(blob);
+          $("#ceshi").attr("src", url);
+        };
+
+        // 文件base64化，以便获知图片原始尺寸
+        reader.onload = function(e) {
+          img.src = e.target.result;
+        };
+        eleFile.addEventListener("change", function(event) {
+          file = event.target.files[0];
+          // 选择的文件是图片
+          if (file.type.indexOf("image") == 0) {
+            reader.readAsDataURL(file);
+          }
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <img id="ceshi" />
+    <img id="ceshi1" />
+    <input name="file" type="file" id="jjfxSoft_iconPath" />
+  </body>
+</html>

@@ -1,0 +1,187 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-15 10:16:44
+ * @LastEditTime: 2019-10-15 11:35:52
+ * @LastEditors: Please set LastEditors
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="test" width="500" height="500"></canvas>
+    <canvas id="drawing" width="400" height="400"
+      >A drawing of something</canvas
+    >
+    <canvas id="canvas"></canvas>
+    <canvas id="canvas1"></canvas>
+    <canvas id="canvas2"></canvas>
+  </body>
+  <script>
+    var test = document.querySelector("#test"); // 方法一
+    var test_1 = document.getElementById("test"); // 方法二
+    var ctx = test.getContext("2d");
+    // 填充和描边
+    ctx.font = "60pt Calibri";
+
+    ctx.lineWidth = 3;
+
+    ctx.strokeStyle = "green";
+
+    ctx.strokeText("Hello World!", 20, 100);
+
+    ctx.fillStyle = "red";
+
+    ctx.fillText("Hello World!", 20, 100);
+
+    var drawing = document.getElementById("drawing");
+    if (drawing.getContext) {
+      var ctx = drawing.getContext("2d");
+    }
+    // rotate(angle)
+    // ctx.rotate((20 * Math.PI) / 180);
+    // ctx.fillRect(50, 20, 100, 50);
+
+    // scale(scaleX,scaleY)
+    // ctx.strokeRect(5, 5, 25, 15);
+    // ctx.scale(2, 2);
+    // ctx.strokeRect(5, 5, 25, 15);
+    // ctx.scale(2, 2);
+    // ctx.strokeRect(5, 5, 25, 15);
+    // ctx.scale(2, 2);
+    // ctx.strokeRect(5, 5, 25, 15);
+
+    // translate(x,y)
+    // ctx.fillRect(10, 10, 100, 50);
+    // ctx.translate(70, 70);
+    // ctx.fillRect(10, 10, 100, 50);
+
+    // transfrom(m1_1,m1_2,m2_1,m2_2,dx,dy)
+    // ctx.fillStyle = "yellow";
+    // ctx.fillRect(0, 0, 250, 100);
+    // ctx.transform(1, 0.5, -0.5, 1, 30, 10);
+    // ctx.fillStyle = "red";
+    // ctx.fillRect(0, 0, 250, 100);
+    // ctx.transform(1, 0.5, -0.5, 1, 30, 10);
+    // ctx.fillStyle = "blue";
+    // ctx.fillRect(0, 0, 250, 100);
+
+    //开始绘制
+    ctx.beginPath();
+    //绘制外圆
+    ctx.arc(100, 100, 99, 0, 2 * Math.PI, false);
+    //绘制内圆
+    ctx.moveTo(194, 100);
+    ctx.arc(100, 100, 94, 0, 2 * Math.PI, false);
+    //变换原点
+    ctx.translate(100, 100);
+    // 旋转表针
+    ctx.rotate(1);
+    //绘制分针
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, -85);
+    //绘制时针
+    ctx.moveTo(0, 0);
+    ctx.lineTo(-65, 0);
+    // 描边路径
+    ctx.stroke();
+
+    //反色（负片）效果
+    // window.onload = function () {
+    //     var img = new Image();
+    //     img.src = "./img/timg.jpg";
+    //     // 加载完成图片之后才能够执行canvas的操作
+    //     img.onload = function () {
+    //         var canvas = document.querySelector("#canvas");
+    //         var cxt = canvas.getContext("2d");
+    //         canvas.width=293;
+    //         canvas.height=220;
+    //         cxt.drawImage(img, 0, 0, 293, 220);
+    //     }
+    // }
+
+    // 去色效果
+    // window.onload = function() {
+    //   var img = new Image();
+    //   img.src = "./img/timg.jpg";
+    //   img.onload = function() {
+    //     var canvas = document.querySelector("#canvas");
+    //     var cxt = canvas.getContext("2d");
+    //     canvas.width = 293;
+    //     canvas.height = 220;
+    //     cxt.drawImage(img, 0, 0, canvas.width, canvas.height);
+    //     var imageData = cxt.getImageData(0, 0, canvas.width, canvas.height);
+    //     var imageData_length = imageData.data.length / 4;
+    //     // 解析之后进行算法运算
+    //     for (var i = 0; i < imageData_length; i++) {
+    //       imageData.data[i * 4] = 255 - imageData.data[i * 4];
+    //       imageData.data[i * 4 + 1] = 255 - imageData.data[i * 4 + 1];
+    //       imageData.data[i * 4 + 2] = 255 - imageData.data[i * 4 + 2];
+    //     }
+    //     cxt.putImageData(imageData, 0, 0);
+    //   };
+    // };
+
+    // 中国版画效果
+    // window.onload = function() {
+    //   var img = new Image();
+    //   img.src = "./img/timg1.jpg";
+    //   img.onload = function() {
+    //     var canvas = document.querySelector("#canvas1");
+    //     var cxt = canvas.getContext("2d");
+    //     canvas.width = 293;
+    //     canvas.height = 220;
+    //     cxt.drawImage(img, 0, 0, canvas.width, canvas.height);
+    //     var imageData = cxt.getImageData(0, 0, canvas.width, canvas.height);
+    //     var imageData_length = imageData.data.length / 4;
+    //     // 解析之后进行算法运算
+    //     for (var i = 0; i < imageData_length; i++) {
+    //       var red = imageData.data[i * 4];
+    //       var green = imageData.data[i * 4 + 1];
+    //       var blue = imageData.data[i * 4 + 2];
+    //       var gray = 0.3 * red + 0.59 * green + 0.11 * blue;
+    //       imageData.data[i * 4] = gray;
+    //       imageData.data[i * 4 + 1] = gray;
+    //       imageData.data[i * 4 + 2] = gray;
+    //     }
+    //     cxt.putImageData(imageData, 0, 0);
+    //   };
+    // };
+
+    // window.onload = function() {
+    //   var img = new Image();
+    //   img.src = "./img/timg2.jpg";
+    //   img.onload = function() {
+    //     var canvas = document.querySelector("#canvas2");
+    //     var cxt = canvas.getContext("2d");
+    //     canvas.width = 293;
+    //     canvas.height = 220;
+    //     cxt.drawImage(img, 0, 0, canvas.width, canvas.height);
+    //     var imageData = cxt.getImageData(0, 0, canvas.width, canvas.height);
+    //     var imageData_length = imageData.data.length / 4;
+    //     // 解析之后进行算法运算
+    //     for (var i = 0; i < imageData_length; i++) {
+    //       var red = imageData.data[i * 4];
+    //       var green = imageData.data[i * 4 + 1];
+    //       var blue = imageData.data[i * 4 + 2];
+    //       var gray = 0.3 * red + 0.59 * green + 0.11 * blue;
+    //       var new_black;
+    //       if (gray > 126) {
+    //         new_black = 255;
+    //       } else {
+    //         new_black = 0;
+    //       }
+    //       imageData.data[i * 4] = new_black;
+    //       imageData.data[i * 4 + 1] = new_black;
+    //       imageData.data[i * 4 + 2] = new_black;
+    //     }
+    //     cxt.putImageData(imageData, 0, 0);
+    //   };
+    // };
+  </script>
+</html>
