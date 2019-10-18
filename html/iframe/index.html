@@ -1,0 +1,42 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-17 10:06:14
+ * @LastEditTime: 2019-10-17 10:14:19
+ * @LastEditors: Please set LastEditors
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>主页面</h1>
+    <iframe id="child" src="./iframe.html"></iframe>
+    <div>
+      <h2>主页面接收消息区域</h2>
+      <span id="message"></span>
+    </div>
+  </body>
+  <script>
+    window.onload = function() {
+      document
+        .getElementById("child")
+        .contentWindow.postMessage(
+          "主页面消息",
+          "http://localhost:8081/iframe.html"
+        );
+    };
+    window.addEventListener(
+      "message",
+      function(event) {
+        document.getElementById("message").innerHTML =
+          "收到" + event.origin + "消息：" + event.data;
+      },
+      false
+    );
+  </script>
+</html>

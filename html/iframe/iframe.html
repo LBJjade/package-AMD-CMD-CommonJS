@@ -1,0 +1,55 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-17 10:04:09
+ * @LastEditTime: 2019-10-17 10:14:03
+ * @LastEditors: Please set LastEditors
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>子页面</h2>
+    <div>
+      <h3>接收消息区域</h3>
+      <span id="message"></span>
+    </div>
+    <iframe
+      id="inlineFrameExample"
+      title="Inline Frame Example"
+      width="300"
+      height="200"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
+    >
+    </iframe>
+  </body>
+  <script>
+    window.addEventListener(
+      "message",
+      function(event) {
+        console.log(event);
+        document.getElementById("message").innerHTML =
+          "收到" + event.origin + "消息：" + event.data;
+      },
+      false
+    );
+    window.addEventListener(
+      "message",
+      function(event) {
+        if (window.parent !== event.source) {
+          return;
+        }
+        console.log(event);
+        document.getElementById("message").innerHTML =
+          "收到" + event.origin + "消息：" + event.data;
+        top.postMessage("子页面消息收到", "http://localhost:8081/index.html");
+      },
+      false
+    );
+  </script>
+</html>
