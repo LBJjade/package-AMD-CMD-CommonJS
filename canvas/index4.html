@@ -1,0 +1,238 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-18 17:23:34
+ * @LastEditTime: 2019-10-18 17:25:15
+ * @LastEditors: Please set LastEditors
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: url("../img/bg_board.jpg") no-repeat;
+        background-size: 100% 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .wraper {
+        width: 1200px;
+        position: relative;
+      }
+      .wraper .canvas {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 10px 10px 12px rgba(0, 0, 0, 0.5);
+      }
+      .wraper .icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        display: none;
+        z-index: 9998;
+        pointer-events: none;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .wraper .pencil-class {
+        background-image: url("../img/pencil.png");
+      }
+      .wraper .eraser-class {
+        background-image: url("../img/eraser.png");
+      }
+      .wraper .btn-list {
+        width: 1000px;
+        text-align: center;
+        margin-top: 10px;
+      }
+      .wraper .btn-list li {
+        display: inline-block;
+        margin: 10px;
+      }
+      .wraper .btn-list li input {
+        padding: 10px 15px;
+        background: yellow;
+        color: #000;
+        border-radius: 10px;
+        font-size: 15px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        border: 1px solid transparent;
+      }
+      .wraper .btn-list li input.rangeBoard {
+        vertical-align: middle;
+      }
+      .wraper .btn-list li input:hover {
+        border: 1px solid #ccc;
+        box-shadow: 0 10px 12px #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wraper">
+      <canvas class="canvas" width="1000" height="500"></canvas>
+      <ul class="btn-list">
+        <li><input type="color" class="colorBoard" value="#000000" /></li>
+        <li><input type="button" class="clearBoard" value="清屏" /></li>
+        <li><input type="button" class="pencil" value="铅笔" /></li>
+        <li><input type="button" class="eraser" value="橡皮擦" /></li>
+        <li><input type="button" class="repeal" value="撤销" /></li>
+        <li><input type="button" class="save" value="保存" /></li>
+        <li>
+          <input type="range" class="rangeBoard" value="1" min="1" max="30" />
+        </li>
+      </ul>
+      <span class="icon pencil-class"></span>
+    </div>
+  </body>
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+    var canvasBoard = {
+      canvas: $(".canvas"),
+      ctx: $(".canvas")
+        .get()[0]
+        .getContext("2d"),
+      bool: true,
+      color: "#000000", //颜色
+      weight: "1", //粗细
+      arr: [],
+      init: function() {
+        this.drawBoard();
+        this.btnList();
+      },
+      drawBoard: function() {
+        let _this = this;
+        let ctx = _this.ctx;
+        let canvas = this.canvas;
+        canvas.mousedown(function(ev) {
+          ev = ev || window.event;
+          _this.bool = true;
+          ctx.beginPath();
+          ctx.lineCap = "round";
+          ctx.lineJoin = "round";
+          ctx.moveTo(ev.offsetX, ev.offsetY);
+          $("body").css("cursor", "none");
+          $(".icon").css({
+            left: ev.offsetX,
+            top: ev.offsetY - 20,
+            display: "block"
+          });
+          canvas.mousemove(function(ev) {
+            if (_this.bool) {
+              ev = ev || window.event;
+              ctx.lineTo(ev.offsetX, ev.offsetY);
+              ctx.stroke();
+            }
+            $(".icon").css({
+              left: ev.offsetX,
+              top: ev.offsetY - 20,
+              display: "block"
+            });
+            $("body").css("cursor", "none");
+          });
+          canvas.mouseup(function() {
+            _this.bool = false;
+            ctx.closePath();
+          });
+          canvas.mouseleave(function() {
+            _this.bool = false;
+            ctx.closePath();
+            $(".icon").css({
+              display: "none"
+            });
+            $("body").css("cursor", "auto");
+          });
+          let imgData = ctx.getImageData(
+            0,
+            0,
+            canvas.get()[0].width,
+            canvas.get()[0].height
+          );
+          _this.arr.push(imgData);
+        });
+      },
+      btnList() {
+        var _this = this;
+        let ctx = _this.ctx;
+        $(".btn-list").on("click", function(ev) {
+          ev = ev || window.event;
+          let canvasW = _this.canvas.get()[0].width;
+          let canvasH = _this.canvas.get()[0].height;
+          switch (ev.target.className) {
+            case "clearBoard":
+              ctx.clearRect(0, 0, canvasW, canvasH);
+              break;
+            case "pencil":
+              _this.color = "#000000";
+              ctx.strokeStyle = _this.color;
+              _this.weight = "1";
+              ctx.lineWidth = _this.weight;
+              $(".colorBoard").val(_this.color);
+              $(".rangeBoard").val(_this.weight);
+              $(".icon")
+                .removeClass("eraser-class")
+                .addClass("pencil-class");
+              break;
+            case "eraser":
+              _this.color = "#ffffff";
+              ctx.strokeStyle = _this.color;
+              _this.weight = "15";
+              ctx.lineWidth = _this.weight;
+              $(".colorBoard").val(_this.color);
+              $(".rangeBoard").val(_this.weight);
+              $(".icon")
+                .removeClass("pencil-class")
+                .addClass("eraser-class");
+              break;
+            case "repeal":
+              if (_this.arr.length > 0) {
+                ctx.putImageData(_this.arr.pop(), 0, 0);
+              }
+              break;
+            case "save":
+              let imgUrl = _this.canvas.get()[0].toDataURL("image/png");
+              let saveA = document.createElement("a");
+              document.body.appendChild(saveA);
+              saveA.href = imgUrl;
+              saveA.download = "mypic" + new Date().getTime();
+              saveA.target = "_blank";
+              saveA.click();
+              break;
+          }
+        });
+        $(".colorBoard").change(function() {
+          _this.color = $(this).val();
+          _this.ctx.strokeStyle = _this.color;
+          if ($(this).val() != "#ffffff") {
+            $(".icon")
+              .removeClass("eraser-class")
+              .addClass("pencil-class");
+          }
+        });
+        $(".rangeBoard").change(function() {
+          _this.weight = $(this).val();
+          _this.ctx.lineWidth = _this.weight;
+        });
+      }
+    };
+    canvasBoard.init();
+  </script>
+</html>

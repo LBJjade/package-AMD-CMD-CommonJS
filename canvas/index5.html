@@ -1,0 +1,123 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-10-18 17:33:34
+ * @LastEditTime: 2019-10-18 17:33:34
+ * @LastEditors: your name
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta
+      name="viewport"
+      content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <style type="text/css">
+      canvas {
+        border: 1px solid #ccc;
+      }
+      html {
+        overflow: hidden;
+      }
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="colorSelect" type="color" name="" value="" placeholder="" />
+    <input type="submit" name="" value="清空画板" onclick="qingkong()" />
+    <br />
+    <canvas width="500" height="500" id="canvas">
+      您的浏览器不支持
+    </canvas>
+  </body>
+  <script>
+    var selector = document.getElementById("colorSelect");
+    // 声明color的全局变量
+    var color = null;
+    // 获取color的颜色
+    selector.onchange = function() {
+      color = this.value;
+    };
+    var canvas = document.getElementById("canvas");
+    var cxt = canvas.getContext("2d");
+    if (document.documentElement.clientWidth > 768) {
+      huaD();
+      qingkong();
+    } else {
+      huaS();
+      qingkong();
+    }
+    //当屏幕发生变化时触发
+    window.onresize = function() {
+      if (document.documentElement.clientWidth > 768) {
+        huaD();
+        qingkong();
+      } else {
+        huaS();
+        qingkong();
+      }
+    };
+    //pc端触发
+    function huaD() {
+      canvas.onmousedown = function(e) {
+        // 获取canvas画面上的x y 轴
+        var x = e.clientX - canvas.offsetLeft;
+        var y = e.clientY - canvas.offsetTop;
+        cxt.beginPath();
+        cxt.moveTo(x, y);
+        canvas.onmousemove = function(e) {
+          var x = e.clientX - canvas.offsetLeft;
+          var y = e.clientY - canvas.offsetTop;
+          cxt.lineTo(x, y);
+          cxt.strokeStyle = color;
+          cxt.stroke();
+        };
+        // 鼠标抬起事件 把上一个的move的事件清空
+        canvas.onmouseup = function() {
+          canvas.onmousemove = null;
+        };
+      };
+    }
+    //移动端触发
+    function huaS() {
+      canvas.addEventListener(
+        "touchstart",
+        function(e) {
+          var x = e.changedTouches[0].clientX - e.target.offsetLeft;
+          var y = e.changedTouches[0].clientY - e.target.offsetTop;
+          cxt.beginPath();
+          cxt.moveTo(x, y);
+
+          canvas.addEventListener(
+            "touchmove",
+            function(e) {
+              e.preventDefault();
+              var x = e.changedTouches[0].clientX - e.target.offsetLeft;
+              var y = e.changedTouches[0].clientY - e.target.offsetTop;
+              cxt.lineTo(x, y);
+              cxt.strokeStyle = color;
+              cxt.stroke();
+            },
+            false
+          );
+        },
+        false
+      );
+    }
+    //清空画板
+    function qingkong() {
+      cxt.clearRect(0, 0, 500, 500);
+      console.log(11);
+    }
+
+    //禁止浏览器动来动去
+    document.body.addEventListener("touchmove", function(e) {
+      e.preventDefault();
+    });
+  </script>
+</html>
