@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-10-22 11:56:48
+ * @LastEditTime: 2019-10-22 11:59:09
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /d:\personal\technology\fontend\package-AMD-CMD-CommonJS\event\event.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+    #div1{
+        width: 500px;
+        height: 500px;
+        background: aqua;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="div1"></div>
+  </body>
+  <script>
+    window.onload = function() {
+    //   let div1 = document.getElementById("div1");
+    //   div1.onclick = function() {
+    //     console.log("打印第一次");
+    //   };
+    //   div1.onclick = function() {
+    //     console.log("打印第二次");
+    //   };
+
+    let div1 = document.getElementById('div1');
+    div1.addEventListener('click',function(){
+        console.log('打印第一次')
+    })
+    div1.addEventListener('click',function(){
+        console.log('打印第二次')
+    })
+    };
+  </script>
+</html>
