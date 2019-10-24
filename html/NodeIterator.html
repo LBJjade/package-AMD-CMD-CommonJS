@@ -1,0 +1,49 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-10-23 11:26:03
+ * @LastEditTime: 2019-10-23 11:27:18
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \package-AMD-CMD-CommonJS\html\NodeIterator.html
+ -->
+<html>
+  <head>
+    <title>dom中的NodeIterator对象示例</title>
+    <script>
+      function makelist() {
+        var divnode = document.getElementById("div1");
+        var FILTER = new Object();
+        FILTER.acceptNode = function(node) {
+          return node.tagName == "P"
+            ? NodeFilter.FILTER_REJECT
+            : NodeFilter.FILTER_ACCEPT;
+        };
+        var iterator = document.createNodeIterator(
+          divnode,
+          NodeFilter.SHOW_ELEMENT,
+          FILTER,
+          false
+        );
+        var oput = document.getElementById("textarea1");
+        var node = iterator.nextNode();
+        while (node) {
+          oput.value += node.tagName + "\n";
+          node = iterator.nextNode();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="div1">
+      <p>你好<b>读者!</b></p>
+      <ul>
+        <li>列表项一</li>
+        <li>列表项二</li>
+        <li>列表项三</li>
+        <li>列表项四</li>
+      </ul>
+    </div>
+    <textarea id="textarea1" rows="10"></textarea><br />
+    <input type="button" value="生成列表" onclick="makelist()" />
+  </body>
+</html>

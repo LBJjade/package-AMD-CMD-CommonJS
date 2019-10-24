@@ -1,0 +1,51 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-10-23 11:30:09
+ * @LastEditTime: 2019-10-23 11:31:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \package-AMD-CMD-CommonJS\html\TreeWalker1.html
+ -->
+<html>
+  <head>
+    <title>dom中的NodeIterator对象示例</title>
+    <script>
+      function makelist() {
+        var oDiv = document.getElementById("div1");
+        var oFilter = new Object();
+        oFilter.acceptNode = function(oNode) {
+          return oNode.tagName == "P"
+            ? NodeFilter.FILTER_REJECT
+            : NodeFilter.FILTER_ACCEPT;
+        };
+        var walker = document.createTreeWalker(
+          oDiv,
+          NodeFilter.SHOW_ELEMENT,
+          oFilter,
+          false
+        );
+        var oOutput = document.getElementById("textarea1");
+        var oP = walker.firstChild(); //go to <p>
+        var oUl = walker.nextSibling(); // go to <ul>
+        var oLi = walker.firstChild(); //go to <li>
+        while (oLi) {
+          oOutput.value += oLi.tagName + "\n";
+          oLi = walker.nextSibling();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="div1">
+      <p>你好<b>读者!</b></p>
+      <ul>
+        <li>列表项一</li>
+        <li>列表项二</li>
+        <li>列表项三</li>
+        <li>列表项四</li>
+      </ul>
+    </div>
+    <textarea id="textarea1" rows="10"></textarea><br />
+    <input type="button" value="生成列表" onclick="makelist()" />
+  </body>
+</html>
