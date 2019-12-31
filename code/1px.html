@@ -1,0 +1,69 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-12-31 11:33:16
+ * @LastEditTime : 2019-12-31 11:45:07
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \package-AMD-CMD-CommonJS\code\1px.html
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .border-1px {
+        position: relative;
+      }
+      .border-1px ::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 200%;
+        border: 1px solid red;
+        color: red;
+        height: 200%;
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        pointer-events: none; /* 防止点击触发 */
+        box-sizing: border-box;
+        @media screen and (min-device-pixel-ratio: 3),
+          (-webkit-min-device-pixel-ratio: 3) {
+          width: 300%;
+          height: 300%;
+          -webkit-transform: scale(0.33);
+          transform: scale(0.33);
+        }
+      }
+
+      .setOnePx {
+        position: relative;
+      }
+
+      .setOnePx ::after {
+        position: absolute;
+        content: "";
+        background-color: royalblue;
+        display: block;
+        width: 100%;
+        height: 1px; /*no*/
+        transform: scale(1, 0.5);
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="border-1px" style="width: 100px;height: 100px;">
+        <div></div>
+    </div>
+    <div class="setOnePx" style="width: 100px;height: 100px;">
+      <div></div>
+    </div>
+  </body>
+</html>
