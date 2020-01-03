@@ -1,0 +1,23 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-01-02 22:37:13
+ * @LastEditTime : 2020-01-02 22:37:34
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \package-AMD-CMD-CommonJS\code\iframe.html
+ -->
+<html>
+ <head>
+  <script> 
+   function go(){
+    //location.target="main";
+    var ifrm = document.getElementById("main");
+    ifrm.setAttribute("src","http://www.csdn.net",0);
+   }
+  </script>
+ </head>
+ <body>
+  <div><a href="javascript:go();">go</a></div>
+  <div><iframe id="main" name="main" src="http://www.163.com" /></div>
+ </body>
+</html>
