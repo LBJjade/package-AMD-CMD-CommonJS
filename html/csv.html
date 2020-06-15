@@ -1,0 +1,43 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-05-28 20:46:05
+ * @LastEditTime: 2020-05-28 20:46:06
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \package-AMD-CMD-CommonJS\html\csv.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<button id="btn">下载</button>
+<a id="downloadCsv"></a>
+<script>
+const btn = document.getElementById('btn');
+btn.addEventListener('click', function () {
+  let headers = ['时段', '2018-08-01', '2018-08-01', '2018-08-01'];
+  let dataSource = [
+    ['00时', 345, 65, 8],
+    ['06时', 23, 56, 89],
+    ['12时', 21, 4, 7],
+    ['18时', 67, 9, 34],
+  ];
+  let csv = '\uFEFF';
+  csv += headers.join(',') + '\r\n';
+  dataSource.forEach( (record) => {
+    csv += (record.join(',') + '\r\n');
+  });
+  const blob = new window.Blob([csv], { type: 'text/csv,charset=UTF-8' });
+  const downloadCsv = document.getElementById('downloadCsv');
+  downloadCsv.href = window.URL.createObjectURL(blob);
+  downloadCsv.click();
+  window.URL.revokeObjectURL(blob);
+})
+</script>
+</body>
+</html>
