@@ -1,0 +1,49 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-11-10 16:49:49
+ * @LastEditTime: 2020-11-10 17:00:03
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \package-AMD-CMD-CommonJS\javascript\scrolltop.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .scroll-container {
+        width: 800px;
+        height: 10000px;
+      }
+      .gotop {
+        position: fixed;
+        bottom: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scroll-container">
+      <span class="gotop" id="gotop">回到顶部</span>
+    </div>
+  </body>
+  <script>
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function (fn) {
+          return setTimeout(fn, 17);
+        };
+      }
+
+    var target = document.querySelector("#gotop");
+    
+    target.onclick = function(){
+        
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+        })
+
+    }
+  </script>
+</html>
